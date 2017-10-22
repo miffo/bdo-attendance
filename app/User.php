@@ -62,7 +62,7 @@ class User extends Authenticatable
         return $this->hasMany(Afk::class, 'user_id', 'id');
     }
 
-    public function Attending()
+    public function Attended()
     {
         return $this->belongsToMany(
             Event::class,
@@ -71,7 +71,7 @@ class User extends Authenticatable
             'event_id',
             'id',
             'id',
-            'Attending'
-        )->as("Attending")->withTimestamps();
+            'Attended'
+        )->as("Attended")->withTimestamps();
     }
 }
