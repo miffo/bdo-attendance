@@ -19,6 +19,7 @@ trait TimeStamps
     {
         return $root->created_at->toIso8601String();
     }
+
     /**
      * @param stdClass $root
      * @param array $args
@@ -28,5 +29,4 @@ trait TimeStamps
     {
         return $root->updated_at->toIso8601String();
     }
-
 }
