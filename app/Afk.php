@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Afk extends Model
 {
-    protected $table = "afkes";
+    protected $table = "afkers";
 
     public function User()
     {

@@ -62,7 +62,7 @@ class User extends Authenticatable
         return $this->hasMany(Afk::class, 'user_id', 'id');
     }
 
-    public function Attended()
+    public function AttendedEvents()
     {
         return $this->belongsToMany(
             Event::class,

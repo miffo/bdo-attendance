@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAfkesTable extends Migration
+class CreateAfkersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAfkesTable extends Migration
      */
     public function up()
     {
-        Schema::create('afkes', function (Blueprint $table) {
+        Schema::create('afkers', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger("user_id")->index("user");
             $table->string("reason", 255)->default("");
@@ -30,6 +30,6 @@ class CreateAfkesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('afkes');
+        Schema::dropIfExists('afkers');
     }
 }
