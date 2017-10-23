@@ -1,7 +1,5 @@
 <?php
-
 return [
-
     /*
     |--------------------------------------------------------------------------
     | View Storage Paths
@@ -12,9 +10,8 @@ return [
     | the usual Laravel view path has already been registered for you.
     |
     */
-
     'paths' => [
-        resource_path('views'),
+        __DIR__.'/../public/views',
     ],
 
     /*
@@ -27,7 +24,5 @@ return [
     | directory. However, as usual, you are free to change this value.
     |
     */
-
     'compiled' => realpath(storage_path('framework/views')),
-
 ];
