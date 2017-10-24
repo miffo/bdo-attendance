@@ -6,8 +6,7 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "sourceMap": true,
-    "jsx": "react" // react-native
+    "sourceMap": true
   },
   "exclude": [
     "node_modules",

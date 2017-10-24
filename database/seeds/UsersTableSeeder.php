@@ -40,7 +40,7 @@ class UsersTableSeeder extends Seeder
                         );
 
                     if ($now > new DateTime($event->event_date) && $signUp->attending) {
-                        $user->Attended()->save($event);
+                        $user->AttendedEvents()->save($event);
                     }
                 }
             }
