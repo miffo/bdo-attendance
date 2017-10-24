@@ -1,4 +1,5 @@
 let mix = require('laravel-mix');
+let webpack = require('webpack');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,5 +12,12 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.ts('resources/assets/ts/main.ts', 'public/js');
+mix.ts('resources/assets/ts/main.ts', 'public/js')
+    .webpackConfig({plugins: [
+        new webpack.ContextReplacementPlugin(
+            /angular(\\|\/)core(\\|\/)@angular/,
+            path.resolve('./src'),
+            {}
+        )
+    ]});
    //.sass('resources/assets/sass/app.scss', 'public/css');
