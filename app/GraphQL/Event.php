@@ -46,7 +46,7 @@ class Event extends GraphQLType
                 'type' => Type::nonNull(Type::string()),
                 'description' => "Description of the event",
             ],
-            'SignUps' => [
+            'sign_ups' => [
                 'args' => [
                     'id' => [
                         'type' => Type::int(),
@@ -56,7 +56,7 @@ class Event extends GraphQLType
                 'type' => Type::listOf(GraphQL::Type('SignUp')),
                 'description' => "Sign ups for the event",
             ],
-            'Attendees' => [
+            'attendees' => [
                 'args' => [
                     'id' => [
                         'type' => Type::int(),
@@ -85,9 +85,9 @@ class Event extends GraphQLType
     public function resolveSignUpsField(\App\Event $root, $args)
     {
         if (isset($args['id'])) {
-            return $root->SignUps()->where('id', '=', $args['id']);
+            return $root->signUps()->where('id', '=', $args['id']);
         }
-        return $root->SignUps;
+        return $root->signUps;
     }
 
     /**
@@ -98,8 +98,8 @@ class Event extends GraphQLType
     public function resolveAttendeesField(\App\Event $root, $args)
     {
         if (isset($args['id'])) {
-            return $root->Attendees()->where('id', '=', $args['id']);
+            return $root->attendees()->where('id', '=', $args['id']);
         }
-        return $root->Attendees;
+        return $root->attendees;
     }
 }

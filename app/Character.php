@@ -15,7 +15,7 @@ class Character extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function User()
+    public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
@@ -23,7 +23,7 @@ class Character extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function CharacterClass()
+    public function characterClass()
     {
         return $this->hasOne(CharacterClass::class, 'id', 'class_id');
     }

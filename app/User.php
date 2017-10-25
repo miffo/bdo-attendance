@@ -36,7 +36,7 @@ class User extends Authenticatable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function Characters()
+    public function characters()
     {
         return $this->hasMany(Character::class, 'user_id', "id");
     }
@@ -44,25 +44,25 @@ class User extends Authenticatable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function DefaultCharacter()
+    public function defaultCharacter()
     {
-        return $this->hasOne(Character::class, 'id', "default_character");
+        return $this->hasOne(Character::class, 'id', "default_character_id");
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function SignUps()
+    public function signUps()
     {
         return $this->hasMany(SignUp::class, "user_id", "id");
     }
 
-    public function Afkes()
+    public function afk()
     {
         return $this->hasMany(Afk::class, 'user_id', 'id');
     }
 
-    public function AttendedEvents()
+    public function attendedEvents()
     {
         return $this->belongsToMany(
             Event::class,

@@ -13,7 +13,7 @@ class CreateAfkersTable extends Migration
      */
     public function up()
     {
-        Schema::create('afkers', function (Blueprint $table) {
+        Schema::create('afk', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger("user_id")->index("user");
             $table->string("reason", 255)->default("");

@@ -15,12 +15,12 @@ class Event extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function SignUps()
+    public function signUps()
     {
         return $this->hasMany(SignUp::class, 'event_id', 'id');
     }
 
-    public function Attendees()
+    public function attendees()
     {
         return $this->belongsToMany(
             User::class,

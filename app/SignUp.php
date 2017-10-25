@@ -18,7 +18,7 @@ class SignUp extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function User()
+    public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id', "user");
     }
@@ -26,7 +26,7 @@ class SignUp extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function Character()
+    public function character()
     {
         return $this->belongsTo(Character::class, 'character_id', 'id');
     }
@@ -34,7 +34,7 @@ class SignUp extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function Event()
+    public function event()
     {
         return $this->belongsTo(Event::class, "event_id", 'id');
     }

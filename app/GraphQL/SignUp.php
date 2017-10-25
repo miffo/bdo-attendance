@@ -50,7 +50,7 @@ class SignUp extends GraphQLType
                 'type' => GraphQL::Type('User'),
                 'description' => "User that has signed",
             ],
-            'Character' => [
+            'character' => [
                 'type' => GraphQL::Type('Character'),
                 'description' => "Character user signed with",
             ],
@@ -80,7 +80,7 @@ class SignUp extends GraphQLType
      */
     public function resolveEventField(\App\SignUp $root, $args)
     {
-        return $root->Event;
+        return $root->event;
     }
 
     /**
@@ -90,7 +90,7 @@ class SignUp extends GraphQLType
      */
     public function resolveUserField(\App\SignUp $root, $args)
     {
-        return $root->User;
+        return $root->user;
     }
 
     /**

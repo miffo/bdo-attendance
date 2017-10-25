@@ -41,7 +41,7 @@ class Afk extends GraphQLType
                 'type' => Type::nonNull(Type::string()),
                 'description' => "Date when comming back from going afk",
             ],
-            'User' => [
+            'user' => [
                 'type' => \GraphQL::Type('User'),
                 'description' => "User whom the afk notice concerns",
             ],
@@ -63,6 +63,6 @@ class Afk extends GraphQLType
      */
     public function resolveUserField(\App\Afk $root, $args)
     {
-        return $root->User;
+        return $root->user;
     }
 }

@@ -32,7 +32,7 @@ class CharacterClass extends GraphQLType
                 'type' => Type::nonNull(Type::string()),
                 'description' => "Name of the class",
             ],
-            'Characters' => [
+            'characters' => [
                 'args' => [
                     'id' => [
                         'type' => Type::int(),

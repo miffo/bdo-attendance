@@ -17,7 +17,7 @@ class CharacterClass extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function Characters()
+    public function characters()
     {
         return $this->hasMany(Character::class, 'class_id', 'id');
     }

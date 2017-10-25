@@ -30,7 +30,7 @@ class Character extends GraphQLType
                 'type' => Type::nonNull(Type::int()),
                 'description' => "Identifying field of character",
             ],
-            'user_id' => [
+            'userId' => [
                 'type' => Type::nonNull(Type::int()),
                 'description' => "Identifying field for the user of the character",
             ],
@@ -38,11 +38,11 @@ class Character extends GraphQLType
                 'type' => Type::nonNull(Type::int()),
                 'description' => "Identifying field for the characters class",
             ],
-            'Class' => [
+            'class_name' => [
                 'type' => Type::nonNull(Type::string()),
                 'description' => "Characters class name",
             ],
-            'CharacterClass' => [
+            'character_class' => [
                 'type' => GraphQL::Type('CharacterClass'),
                 'description' => "Characters class object",
             ],
@@ -54,7 +54,7 @@ class Character extends GraphQLType
                 'type' => Type::nonNull(Type::int()),
                 'description' => "Level of the caracter",
             ],
-            'User' => [
+            'user' => [
                 'type' => GraphQL::Type('User'),
                 'description' => "Users whom the charactar belongs to"
             ],
@@ -74,9 +74,9 @@ class Character extends GraphQLType
      * @param array $args
      * @return string
      */
-    public function resolveClassField(\App\Character $root, $args)
+    public function resolveClassNameField(\App\Character $root, $args)
     {
-        return $root->CharacterClass->name;
+        return $root->characterClass->name;
     }
 
     /**
@@ -86,7 +86,7 @@ class Character extends GraphQLType
      */
     public function resolveCharacterClassField(\App\Character $root, $args)
     {
-        return $root->CharacterClass;
+        return $root->characterClass;
     }
 
     /**
@@ -96,6 +96,6 @@ class Character extends GraphQLType
      */
     public function resolveUserField(\App\Character $root, $args)
     {
-        return $root->User;
+        return $root->user;
     }
 }

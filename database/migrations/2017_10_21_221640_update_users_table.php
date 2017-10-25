@@ -17,7 +17,7 @@ class UpdateUsersTable extends Migration
             $table->string("family_name", 255)
                 ->after("name")
                 ->unique();
-            $table->unsignedInteger("default_character")
+            $table->unsignedInteger("default_character_id")
                 ->after("family_name")
                 ->nullable()
                 ->default(null);

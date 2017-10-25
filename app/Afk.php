@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Afk extends Model
 {
-    protected $table = "afkers";
+    protected $table = "afk";
 
-    public function User()
+    public function user()
     {
         $this->belongsTo(User::class, 'user_id', 'id', "user");
     }

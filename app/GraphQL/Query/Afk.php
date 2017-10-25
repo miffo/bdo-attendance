@@ -2,7 +2,6 @@
 
 namespace App\GraphQL\Query;
 
-use App\Afk;
 use Folklore\GraphQL\Support\Query;
 use GraphQL;
 use GraphQL\Type\Definition\Type;
@@ -11,7 +10,7 @@ use GraphQL\Type\Definition\Type;
  * Class Afk
  * @package App\GraphQL\Query
  */
-class Afkers extends Query
+class Afk extends Query
 {
     /** @var array  */
     protected $attributes = [
@@ -38,11 +37,11 @@ class Afkers extends Query
     }
 
     /**
-     * @param $root
+     * @param \App\Afk $root
      * @param array $args
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
-    public function resolve($root, $args)
+    public function resolve(\App\Afk $root, $args)
     {
         if (isset($args['id'])) {
             return Afk::where('id', $args['id'])->get();

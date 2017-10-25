@@ -42,11 +42,11 @@ class User extends GraphQLType
                 'type' => Type::nonNull(Type::string()),
                 'description' => "Email of the user",
             ],
-            'default_character' => [
+            'default_character_id' => [
                 'type' => Type::int(),
                 'description' => "Identifying field of users default character",
             ],
-            'Characters' => [
+            'characters' => [
                 'args' => [
                     'id' => [
                         'type' => Type::int(),
@@ -56,11 +56,11 @@ class User extends GraphQLType
                 'type' => Type::listOf(GraphQL::Type('Character')),
                 'description' => "Users characters",
             ],
-            'DefaultCharacter' => [
+            'default_character' => [
                 'type' => GraphQL::Type('Character'),
                 'description' => "Users default character",
             ],
-            'SignUps' => [
+            'sign_ups' => [
                 'args' => [
                     'id' => [
                         'type' => Type::int(),
@@ -70,7 +70,7 @@ class User extends GraphQLType
                 'type' => Type::listOf(GraphQL::Type('SignUp')),
                 'description'=> "User signups",
             ],
-            'Afkes' => [
+            'afk' => [
                 'args' => [
                     'id' => [
                         'type' => Type::int(),
@@ -80,7 +80,7 @@ class User extends GraphQLType
                 'type' => Type::listOf(GraphQL::Type('Afk')),
                 'description'=> "User Afk notifications",
             ],
-            'AttendedEvents' => [
+            'attended_events' => [
                 'args' => [
                     'id' => [
                         'type' => Type::int(),
