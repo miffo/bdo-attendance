@@ -13,11 +13,23 @@ let webpack = require('webpack');
  */
 
 mix.ts('resources/assets/ts/main.ts', 'public/js')
-    .webpackConfig({plugins: [
-        new webpack.ContextReplacementPlugin(
-            /angular(\\|\/)core(\\|\/)@angular/,
-            path.resolve('./src'),
-            {}
-        )
-    ]});
+    .webpackConfig({
+        plugins: [
+            new webpack.ContextReplacementPlugin(
+                /angular(\\|\/)core(\\|\/)@angular/,
+                path.resolve('./src'),
+                {}
+            )
+        ]/*,
+        
+        "module": {
+            "rules": [
+
+                {
+                    "test": /\.ts$/,
+                    "loader": "@ngtools/webpack"
+                }
+            ]
+        }*/
+    });
    //.sass('resources/assets/sass/app.scss', 'public/css');
