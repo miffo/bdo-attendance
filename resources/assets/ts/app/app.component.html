@@ -1,5 +1,7 @@
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
-</div>
+<mat-sidenav-container>
+    <mat-sidenav mode="push" opened="true" disableClose>
+        <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+        <a routerLink="/eventList" routerLinkActive="active">Events</a>
+    </mat-sidenav>
+    <router-outlet></router-outlet>
+</mat-sidenav-container>
