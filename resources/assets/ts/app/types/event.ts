@@ -12,4 +12,11 @@ export class Event
     attendees: User[];
     created_at: Date;
     updated_at: Date;
+
+    constructor() {
+        this.name = "";
+        this.description = "";
+        this.sign_ups = [];
+        this.attendees = [];
+    }
 }

@@ -15,4 +15,20 @@ export class SignUp
     comment: string;
     created_at: Date;
     updated_at: Date;
+
+    constructor(event:Event, user:User, character:Character = null) {
+        this.event_id = event.id;
+        this.event = event;
+        this.user_id = user.id;
+        this.user = user;
+        if (character) {
+            this.character_id = character.id
+            this.character = character;
+        } else {
+            this.character_id = user.default_character_id;
+            this.character = user.default_character;
+        }
+        this.attending = true;
+        this.comment = "";
+    }
 }

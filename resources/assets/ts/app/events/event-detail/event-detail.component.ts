@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
 })
 
 export class EventDetailComponent {
-    title = 'app';
+    title = 'Event details';
 }

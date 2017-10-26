@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {Store} from '@ngrx/store';
+import {Observable} from "rxjs/Observable";
 
+import {State} from '../../store';
+import {Event} from '../../types/event';
 
 @Component({
     selector: 'event-list',
@@ -8,5 +12,13 @@ import { Component } from '@angular/core';
 })
 
 export class EventListComponent {
-    title = 'app';
+
+    public events$: Observable<Event[]>;
+
+    title = 'Event list';
+
+
+    constructor(private store: Store<State>) {
+        this.events$ = store.select(s => s.events);
+    }
 }

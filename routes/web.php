@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
+Route::any('/', function () {
     return View::make('index');
 });
+
+Route::any( '/{any}', function ($any) {
+    return View::make('index');
+})->where('any', '.*');

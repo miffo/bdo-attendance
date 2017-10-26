@@ -10,4 +10,10 @@ export class Afk
     from_date: Date;
     created_at: Date;
     updated_at: Date;
+
+    constructor(user:User) {
+        this.user_id = user.id;
+        this.user = user;
+        this.reason = "";
+    }
 }

@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
 })
 
 export class DashboardComponent {
-    title = 'app';
+    title = 'Dashboard';
 }

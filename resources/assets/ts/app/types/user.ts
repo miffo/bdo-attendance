@@ -13,4 +13,10 @@ export class User
     default_character: Character;
     afk: Afk[];
     sign_ups: SignUp[];
+
+    constructor() {
+        this.characters = [];
+        this.afk = [];
+        this.sign_ups = [];
+    }
 }
