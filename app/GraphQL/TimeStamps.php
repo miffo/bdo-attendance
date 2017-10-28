@@ -15,7 +15,7 @@ trait TimeStamps
      * @param array $args
      * @return string
      */
-    public function resolveCreatedAtField(\App\User $root, $args)
+    public function resolveCreatedAtField(\Illuminate\Database\Eloquent\Model $root, $args)
     {
         return $root->created_at->toIso8601String();
     }
@@ -25,7 +25,7 @@ trait TimeStamps
      * @param array $args
      * @return string
      */
-    public function resolveUpdatedAtField(\App\User $root, $args)
+    public function resolveUpdatedAtField(\Illuminate\Database\Eloquent\Model $root, $args)
     {
         return $root->updated_at->toIso8601String();
     }

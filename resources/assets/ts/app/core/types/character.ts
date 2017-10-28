@@ -1,4 +1,4 @@
-import {User} from "./user";
+//import {User} from "./user";
 
 export class CharacterClass {
     id: number;
@@ -14,16 +14,16 @@ export class Character
     character_class: CharacterClass;
     name: string;
     level: number;
-    user: User;
+    //user: User;
     created_at: Date;
     updated_at: Date;
 
-    constructor(user:User, cClass:CharacterClass) {
-        this.user_id = user.id;
+    constructor(/*user:User, cClass:CharacterClass*/) {
+        /*this.user_id = user.id;
         this.user = user;
         this.class_id = cClass.id;
         this.class_name = cClass.name;
-        this.character_class = cClass;
+        this.character_class = cClass;*/
         this.name = "";
         this.level = 0;
     }

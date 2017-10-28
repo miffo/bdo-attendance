@@ -1,5 +1,5 @@
-import {SignUp} from "./sign_up";
-import {User} from "./user";
+import {SignUp} from "../../core/types/sign_up";
+import {User} from "../../core/types/user";
 
 export class Event
 {

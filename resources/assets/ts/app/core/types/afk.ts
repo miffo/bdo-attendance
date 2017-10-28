@@ -1,19 +1,19 @@
-import { User } from "./user";
+//import { User } from "./user";
 
 export class Afk
 {
     id: number;
     user_id: number;
-    user: User;
+    //user: User;
     reason: string;
     to_date: Date;
     from_date: Date;
     created_at: Date;
     updated_at: Date;
 
-    constructor(user:User) {
-        this.user_id = user.id;
-        this.user = user;
+    constructor(/*user:User*/) {
+        //this.user_id = user.id;
+        //this.user = user;
         this.reason = "";
     }
 }
