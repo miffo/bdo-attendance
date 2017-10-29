@@ -22,7 +22,7 @@ import {Event} from "../models/event";
         
         <ng-container matColumnDef="event_date">
             <mat-header-cell *matHeaderCellDef> Event date </mat-header-cell>
-            <mat-cell *matCellDef="let event"> {{event.event_date}} </mat-cell>
+            <mat-cell *matCellDef="let event"> {{event.created_at}} </mat-cell>
         </ng-container>
         
         <ng-container matColumnDef="last_sign_up_date">
@@ -45,8 +45,7 @@ import {Event} from "../models/event";
                    [pageSize]="5"
                    [pageSizeOptions]="[5, 10, 25, 50]">
     </mat-paginator>
-</div>
-    `,
+</div>`,
     styles: [`
     `]
 })

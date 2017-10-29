@@ -15,13 +15,13 @@ import {Event} from '../models/event';
     template: `
 <mat-card>
     <mat-card-title>
-        Event
+        {{(event$ | async).name}}
     </mat-card-title>
     <mat-card-content>
         <div *ngIf="!event$ | async">LOADING</div>
         <event-detail
                 *ngIf="event$ | async"
-                [event]="event$ | async"
+                [event$]="event$"
                 [isEventInCollection]="isSelectedEventInCollection$ | async" >
 
         </event-detail>

@@ -1,6 +1,6 @@
 import {NgModule} from "@angular/core";
 import {
-    MatCardModule, MatTableModule, MatPaginatorModule, MatGridListModule
+    MatCardModule, MatTableModule, MatPaginatorModule, MatGridListModule, MatTooltipModule
 } from '@angular/material';
 
 const imports:any[] = [
@@ -8,6 +8,7 @@ const imports:any[] = [
     MatGridListModule,
     MatTableModule,
     MatPaginatorModule,
+    MatTooltipModule,
 ];
 
 const declarations:any[] = [
