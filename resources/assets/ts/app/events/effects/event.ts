@@ -15,7 +15,20 @@ export class EventsEffects {
     @Effect()
     selectEvent$: Observable<Action> = this.actions$
         .ofType(event.SELECT)
-        .switchMap((payload) => this.http.get(`graphql?query=query{events(id=${payload}){id, name, event_date, last_sign_up_date, created_at, updated_at}}`)
-            .map(response => response.json())
-            .map(payload => ({type: event.LOAD, payload: payload.data.events})));
+        .map(action => (action as event.Select).payload)
+            .switchMap((payload) => this.http.get(`graphql?query=query {
+                    events(id:${payload}){
+                        id,
+                        event_date,
+                        last_sign_up_date,
+                        name,
+                        description,
+                        sign_ups{id,attending,user{id, name}},
+                        attendees{id,name},
+                        created_at,
+                        updated_at,
+                    }
+                }`)
+                .map(response => response.json())
+                .map(payload => ({type: event.LOAD, payload: {event: payload.data.events[0]}})));
 }

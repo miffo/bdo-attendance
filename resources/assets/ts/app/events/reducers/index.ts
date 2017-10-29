@@ -80,4 +80,4 @@ export const isSelectedEventInCollection = createSelector(
     (ids, selectedId) => {
         return ids.indexOf(selectedId) > -1;
     }
-)
+);

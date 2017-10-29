@@ -42,11 +42,11 @@ class SignUp extends GraphQLType
                 'type' => Type::int(),
                 'description' => "Identifying field of character user signed with",
             ],
-            'Event' => [
+            'event' => [
                 'type' => GraphQL::Type('Event'),
                 'description' => "Event signed for",
             ],
-            'User' => [
+            'user' => [
                 'type' => GraphQL::Type('User'),
                 'description' => "User that has signed",
             ],

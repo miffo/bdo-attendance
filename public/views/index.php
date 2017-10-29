@@ -2,6 +2,9 @@
     <head>
         <meta charset="utf-8">
         <title>Test</title>
+
+        <link href="../indigo-pink.css" rel="stylesheet">
+
         <base href="/">
     </head>
     <body>

@@ -23,11 +23,9 @@ import {Event} from "../models/event";
     `]
 })
 
-export class EventListContainerComponent implements OnInit
+export class EventListComponent implements OnInit
 {
     public events$: Observable<Event[]>;
-
-    title = 'Event list';
 
     constructor(@Inject(Store) private store: Store<fromEvents.State>) {
         this.events$ = this.store.select(fromEvents.getEventCollection);

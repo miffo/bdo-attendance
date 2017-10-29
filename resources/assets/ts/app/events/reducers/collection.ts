@@ -27,7 +27,7 @@ export function reducer (
             return {
                 loaded:true,
                 loading:false,
-                ids: action.payload.map(event => event.id)
+                ids: action.payload.events.map(event => event.id)
             };
         }
 

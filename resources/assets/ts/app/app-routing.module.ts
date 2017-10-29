@@ -1,15 +1,15 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 import {DashboardComponent} from "./dashboard/dashboard.component";
-import {EventDetailComponent} from "./events/containers/event-detail/event-detail.component";
+import {EventComponent} from "./events/containers/event.component";
 import {PageNotFoundComponent} from "./core/containers/page-not-found.component";
-import {EventListContainerComponent} from "./events/containers/event-list-container.component";
+import {EventListComponent} from "./events/containers/event-list.component";
 
 const appRoutes: Routes = [
     { path: '', redirectTo: "/dashboard", pathMatch:'full'},
     { path: 'dashboard', component: DashboardComponent, data:{title: "Coming events"}},
-    { path: 'eventList', component: EventListContainerComponent, data:{title: "List of all events"}},
-    { path: 'event/:id', component: EventDetailComponent},
+    { path: 'eventList', component: EventListComponent, data:{title: "List of all events"}},
+    { path: 'event/:id', component: EventComponent},
     { path: '**', component: PageNotFoundComponent }
 ];
 

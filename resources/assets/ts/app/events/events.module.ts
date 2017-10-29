@@ -1,6 +1,7 @@
 import {NgModule} from "@angular/core";
-import {StoreModule} from "@ngrx/store";
+import {RouterModule} from "@angular/router";
 import {CommonModule} from "@angular/common";
+import {StoreModule} from "@ngrx/store";
 import {EffectsModule} from "@ngrx/effects";
 
 import {SharedModule} from "../shared/shared-module";
@@ -8,23 +9,30 @@ import {SharedModule} from "../shared/shared-module";
 import {CollectionEffects} from "./effects/collection";
 import {EventsEffects} from "./effects/event";
 
-import {EventListContainerComponent} from "./containers/event-list-container.component";
-import {EventDetailComponent} from "./containers/event-detail/event-detail.component";
-import {EventListComponent} from "./components/event-list.component";
-import {EventListRowComponent} from "./components/event-list-row.component";
+import {EventComponent} from "./containers/event.component";
+import {EventListComponent} from "./containers/event-list.component";
+import {EventListViewComponent} from "./components/event-list-view.component";
+import {EventDetailComponent} from "./components/event-detail.component";
+import {EventDetailViewComponent} from "./components/event-detail-view.component";
 
 import {reducers} from "./reducers";
+import {EventDetailSignUpsComponent} from "./components/event-detail-sign-ups.component";
+import {EventDetailAttendeesComponent} from "./components/event-detail-attendees.component";
 
 @NgModule({
     providers:[],
     declarations: [
-        EventListContainerComponent,
+        EventComponent,
         EventListComponent,
-        EventListRowComponent,
-        EventDetailComponent
+        EventListViewComponent,
+        EventDetailComponent,
+        EventDetailAttendeesComponent,
+        EventDetailSignUpsComponent,
+        EventDetailViewComponent
     ],
     imports:[
         CommonModule,
+        RouterModule,
         SharedModule,
         StoreModule.forFeature('events', reducers),
         EffectsModule.forFeature([CollectionEffects, EventsEffects])

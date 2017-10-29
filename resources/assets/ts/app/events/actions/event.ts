@@ -28,7 +28,7 @@ export class SearchError implements Action {
 export class Load implements Action {
     readonly type = LOAD;
 
-    constructor(public payload: Event) {}
+    constructor(public payload: {event:Event}) {}
 }
 
 export class Select implements Action {
