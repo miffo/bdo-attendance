@@ -15,7 +15,7 @@ class CreateEventsTable extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamp("event_date")->nullable()->default(null);
+            $table->timestamp("event_date");
             $table->date("last_sign_up_date")->nullable();
             $table->string("name", 50);
             $table->string("description",255)->default("");
