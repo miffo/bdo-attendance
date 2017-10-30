@@ -11,7 +11,7 @@ return [
     |
     */
     'paths' => [
-        __DIR__.'/../public/views',
+        __DIR__.'/../resources/views',
     ],
 
     /*
