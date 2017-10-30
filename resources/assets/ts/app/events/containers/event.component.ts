@@ -13,23 +13,23 @@ import {Event} from '../models/event';
 @Component({
     selector: 'event',
     template: `
-<mat-card>
-    <mat-card-title>
-        {{(event$ | async).name}}
-    </mat-card-title>
-    <mat-card-content>
-        <div *ngIf="!event$ | async">LOADING</div>
-        <event-detail
-                *ngIf="event$ | async"
-                [event$]="event$"
-                [isEventInCollection]="isSelectedEventInCollection$ | async" >
-
-        </event-detail>
-    </mat-card-content>
-    <mat-card-actions>
-    </mat-card-actions>
-</mat-card>
-    `,
+<div *ngIf="!(event$ | async)">LOADING</div>
+<div *ngIf="(event$ | async)">
+    <mat-card>
+        <mat-card-title>
+            {{(event$ | async).name}}
+        </mat-card-title>
+        <mat-card-content>
+            <event-detail
+                    [event$]="event$"
+                    [isEventInCollection]="isSelectedEventInCollection$ | async" >
+    
+            </event-detail>
+        </mat-card-content>
+        <mat-card-actions>
+        </mat-card-actions>
+    </mat-card>
+</div>`,
     styles: [`
     `
     ]

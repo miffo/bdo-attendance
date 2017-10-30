@@ -63,19 +63,25 @@ class UserDataSource extends DataSource<User> {
         ];
 
         return Observable.merge(...displayDataChanges).map(() => {
-            const data = this._database.data.slice();
+            if (this._database.data) {
+                const data = this._database.data.slice();
 
-            // Grab the page's slice of data.
-            const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
-            return data.splice(startIndex, this._paginator.pageSize);
+                // Grab the page's slice of data.
+                const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
+                return data.splice(startIndex, this._paginator.pageSize);
+            }
+            return [];
         });
     }
 
     disconnect() {}
 
     length() {
-        const data = this._database.data.slice();
-        return data.length;
+        if (this._database.data) {
+            const data = this._database.data.slice();
+            return data.length;
+        }
+        return 0;
     }
 }
 

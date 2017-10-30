@@ -8,8 +8,6 @@ import {Action} from '@ngrx/store';
 import {Actions, Effect} from '@ngrx/effects';
 import {Http} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
-import {defer} from 'rxjs/observable/defer';
-import {of} from 'rxjs/observable/of';
 
 import * as collection from '../actions/collection';
 import {Event} from '../models/event';

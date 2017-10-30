@@ -88,8 +88,11 @@ class SignUpsDataSource extends DataSource<SignUp> {
     disconnect() {}
 
     length() {
-        const data = this._database.data.slice();
-        return data.length;
+        if (this._database.data) {
+            const data = this._database.data.slice();
+            return data.length;
+        }
+        return 0;
     }
 }
 
