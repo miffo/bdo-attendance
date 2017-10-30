@@ -19,7 +19,13 @@ mix.ts('resources/assets/ts/main.ts', 'public/js')
                 /angular(\\|\/)core(\\|\/)@angular/,
                 path.resolve('./src'),
                 {}
-            )
+            ),
+            new webpack.SourceMapDevToolPlugin({
+                "filename": "[file].map[query]",
+                "moduleFilenameTemplate": "[resource-path]",
+                "fallbackModuleFilenameTemplate": "[resource-path]?[hash]",
+                "sourceRoot": "webpack:///"
+            })
         ]/*,
         
         "module": {
