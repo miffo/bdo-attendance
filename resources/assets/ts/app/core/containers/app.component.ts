@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
     <app-side-nav>
         Bdo-Attendence
         <app-nav-item routerLink="/dashboard">Dashboard</app-nav-item>
-        <app-nav-item routerLink="/eventList">Events</app-nav-item>
+        <app-nav-item routerLink="/events">Events</app-nav-item>
     </app-side-nav>
     <router-outlet></router-outlet>
 </app-layout>`

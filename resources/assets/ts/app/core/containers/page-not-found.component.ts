@@ -18,8 +18,7 @@ import { Component } from '@angular/core';
     styles: [`
 :host {
     text-align: center;
-}`,
-    ]
+}`]
 })
 
 export class PageNotFoundComponent {

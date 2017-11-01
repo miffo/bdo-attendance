@@ -5,7 +5,6 @@ import {Component} from "@angular/core";
     template: `
 <mat-sidenav-container>
     <ng-content></ng-content>
-</mat-sidenav-container>
-`
+</mat-sidenav-container>`
 })
 export class LayoutComponent {}
