@@ -36,7 +36,7 @@ import {Event} from "../models/event";
         </ng-container>
         
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row [routerLink]="['/event', event.id]" *matRowDef="let event; columns: displayedColumns;"></mat-row>
+        <mat-row [routerLink]="['/events', event.id]" *matRowDef="let event; columns: displayedColumns;"></mat-row>
     
     </mat-table>
     <mat-paginator #paginator

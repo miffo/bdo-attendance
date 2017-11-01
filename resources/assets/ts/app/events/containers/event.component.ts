@@ -31,16 +31,18 @@ import {Event} from '../models/event';
     </mat-card>
 </div>`,
     styles: [`
-    `
-    ]
+    `]
 })
 export class EventComponent implements OnDestroy
 {
+    test = new event.Select(2);
+    store: Store<fromEvents.State>;
     event$: Observable<Event>;
     isSelectedEventInCollection$: Observable<boolean>;
     actionsSubscription: Subscription;
 
     constructor(@Inject(Store) store: Store<fromEvents.State>, @Inject(ActivatedRoute) route: ActivatedRoute) {
+        this.store = store;
         this.actionsSubscription = route.params
             .map(params => new event.Select(params.id))
             .subscribe(store);

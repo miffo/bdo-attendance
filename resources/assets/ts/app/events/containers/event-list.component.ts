@@ -17,8 +17,7 @@ import {Event} from "../models/event";
     <mat-card-content>
         <event-list [events$]="events$"></event-list>
     </mat-card-content>
-</mat-card>
-`,
+</mat-card>`,
     styles: [`
     `]
 })

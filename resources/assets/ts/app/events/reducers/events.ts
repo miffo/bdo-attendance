@@ -22,7 +22,15 @@ export function reducer(state = initialState, action: event.Actions | collection
     switch (action.type) {
         case collection.LOAD_SUCCESS: {
             return {
-                ...adapter.addMany(action.payload.events, state),
+                ...adapter.addMany(action.payload.events.map(event => {
+                    let newEvent = new Event();
+                    newEvent.id = event.id;
+                    newEvent.name = event.name;
+                    newEvent.event_date = event.event_date;
+                    newEvent.last_sign_up_date = event.last_sign_up_date;
+                    newEvent.created_at = event.created_at;
+                    return newEvent;
+                }), state),
                 selectedEventId: state.selectedEventId,
             };
         }

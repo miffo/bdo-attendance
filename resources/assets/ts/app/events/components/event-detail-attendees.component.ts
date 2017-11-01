@@ -1,17 +1,16 @@
-import {Component, Input, OnInit, ViewChild} from "@angular/core";
-import {Observable} from "rxjs/Observable";
-
-import {Event} from "../models/event";
+import {Component, Input, ViewChild} from "@angular/core";
 import {MatPaginator} from "@angular/material";
 import {DataSource} from "@angular/cdk/collections";
-import {User} from "../../core/types/user";
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {Observable} from "rxjs/Observable";
+
+import {User} from "../../users/models/user";
+import {UsersDatabase} from "./event-detail.component";
 
 @Component({
     selector: 'event-detail-attendees',
     template: `
 <div>
-    <mat-table #table [dataSource]="dateSource">
+    <mat-table #table [dataSource]="dataSource">
         <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
             <mat-cell *matCellDef="let user"> {{user.id}} </mat-cell>
@@ -27,7 +26,7 @@ import {BehaviorSubject} from "rxjs/BehaviorSubject";
 
     </mat-table>
     <mat-paginator #paginator
-                   [length]="dateSource.length()"
+                   [length]="usersDatabase?usersDatabase.data.length:0"
                    [pageIndex]="0"
                    [pageSize]="5"
                    [pageSizeOptions]="[5, 10, 25, 50]">
@@ -36,22 +35,20 @@ import {BehaviorSubject} from "rxjs/BehaviorSubject";
     styles: [`
     `]
 })
-export class EventDetailAttendeesComponent implements OnInit {
+export class EventDetailAttendeesComponent
+{
     displayedColumns = ['name'];
+    dataSource: UsersDataSource | null;
+    @Input() usersDatabase: UsersDatabase;
+    @Input() @ViewChild(MatPaginator) paginator: MatPaginator;
 
-    @Input() event$: Observable<Event>;
-    dateSource: UserDataSource;
-
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-
-    ngOnInit():void {
-        if (!this.dateSource)
-            this.dateSource = new UserDataSource(new EventAttendeesDatabase(this.event$), this.paginator);
+    ngOnInit() {
+        this.dataSource = new UsersDataSource(this.usersDatabase, this.paginator);
     }
 }
 
-class UserDataSource extends DataSource<User> {
-    constructor(private _database: EventAttendeesDatabase, private _paginator: MatPaginator) {
+export class UsersDataSource extends DataSource<User> {
+    constructor(private _database: UsersDatabase, private _paginator: MatPaginator) {
         super();
     }
 
@@ -63,33 +60,13 @@ class UserDataSource extends DataSource<User> {
         ];
 
         return Observable.merge(...displayDataChanges).map(() => {
-            if (this._database.data) {
-                const data = this._database.data.slice();
+            const data = this._database.data.slice();
 
-                // Grab the page's slice of data.
-                const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
-                return data.splice(startIndex, this._paginator.pageSize);
-            }
-            return [];
+            // Grab the page's slice of data.
+            const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
+            return data.splice(startIndex, this._paginator.pageSize);
         });
     }
 
     disconnect() {}
-
-    length() {
-        if (this._database.data) {
-            const data = this._database.data.slice();
-            return data.length;
-        }
-        return 0;
-    }
-}
-
-class EventAttendeesDatabase {
-    dataChange: BehaviorSubject<Event> = new BehaviorSubject<Event>(new Event());
-    get data(): User[] { return this.dataChange.value.attendees; }
-
-    constructor(events$: Observable<Event>) {
-        events$.subscribe(this.dataChange);
-    }
 }

@@ -1,4 +1,5 @@
 import {isDevMode, NgModule} from "@angular/core";
+import {RouterModule} from "@angular/router";
 import {StoreModule} from '@ngrx/store';
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserModule} from '@angular/platform-browser';
@@ -13,7 +14,8 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {SharedModule} from "./shared/shared-module";
 import {CoreModule} from "./core/core-module";
 import {EventsModule} from "./events/events.module";
-import {AppRoutingModule} from "./app-routing.module";
+import {AppRoutesModule} from "./app.routes.module";
+
 
 import {reducers, metaReducers} from './reducers';
 
@@ -23,7 +25,7 @@ import {HttpModule} from "@angular/http";
 
 const imports: any[] = [
     CommonModule,
-    AppRoutingModule,
+    AppRoutesModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,

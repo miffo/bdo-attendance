@@ -6,7 +6,6 @@ export const SEARCH = "[Event] Search";
 export const SEARCH_COMPLETE = "[Event] Search Complete";
 export const SEARCH_ERROR = "[Event] Search Error";
 export const LOAD = "[Event] Load";
-export const LOAD_SUCCESS = "[Event] Load Success";
 export const SELECT = "[Event] Select";
 
 export class Search implements Action {

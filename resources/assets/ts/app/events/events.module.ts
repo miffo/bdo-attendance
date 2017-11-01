@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {RouterModule} from "@angular/router";
+import {RouterModule} from '@angular/router';
 import {CommonModule} from "@angular/common";
 import {StoreModule} from "@ngrx/store";
 import {EffectsModule} from "@ngrx/effects";
@@ -20,6 +20,16 @@ import {EventDetailSignUpsComponent} from "./components/event-detail-sign-ups.co
 import {EventDetailAttendeesComponent} from "./components/event-detail-attendees.component";
 
 @NgModule({
+    imports:[
+        CommonModule,
+        SharedModule,
+        StoreModule.forFeature('events', reducers),
+        EffectsModule.forFeature([CollectionEffects, EventsEffects]),
+        RouterModule.forChild([
+            {path: ':id', component: EventComponent},
+            {path: '', component: EventListComponent}
+        ])
+    ],
     providers:[],
     declarations: [
         EventComponent,
@@ -29,13 +39,6 @@ import {EventDetailAttendeesComponent} from "./components/event-detail-attendees
         EventDetailAttendeesComponent,
         EventDetailSignUpsComponent,
         EventDetailViewComponent
-    ],
-    imports:[
-        CommonModule,
-        RouterModule,
-        SharedModule,
-        StoreModule.forFeature('events', reducers),
-        EffectsModule.forFeature([CollectionEffects, EventsEffects])
     ],
     exports:[]
 })

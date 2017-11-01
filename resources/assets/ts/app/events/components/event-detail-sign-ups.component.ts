@@ -1,16 +1,16 @@
-import {Component, Input, OnInit, ViewChild} from "@angular/core";
+import {Component, Input, ViewChild, OnInit} from "@angular/core";
 import {MatPaginator} from "@angular/material";
 import {DataSource} from "@angular/cdk/collections";
-import {Observable, BehaviorSubject} from "rxjs";
+import {Observable} from "rxjs/Observable";
 
-import {SignUp} from "../../core/types/sign_up";
-import {Event} from "../models/event";
+import {SignUp} from "../../sign_ups/models/sign_up";
+import {SignUpsDatabase} from "./event-detail.component";
 
 @Component({
     selector: 'event-detail-sign-ups',
     template: `
 <div>
-    <mat-table #table [dataSource]="dateSource">
+    <mat-table #table [dataSource]="dataSource">
         <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
             <mat-cell *matCellDef="let signUp"> {{signUp.id}} </mat-cell>
@@ -41,7 +41,7 @@ import {Event} from "../models/event";
 
     </mat-table>
     <mat-paginator #paginator
-                   [length]="dateSource.length()"
+                   [length]="signUpDatabase?signUpDatabase.data.length:0"
                    [pageIndex]="0"
                    [pageSize]="5"
                    [pageSizeOptions]="[5, 10, 25, 50]">
@@ -50,22 +50,21 @@ import {Event} from "../models/event";
     styles: [`
     `]
 })
-export class EventDetailSignUpsComponent implements OnInit {
+export class EventDetailSignUpsComponent implements OnInit
+{
     displayedColumns = ['attending', 'user_name', 'created_at'];
-
-    @Input() event$: Observable<Event>;
-    dateSource: SignUpsDataSource;
-
+    dataSource: SignUpsDataSource | null;
+    @Input() signUpDatabase: SignUpsDatabase;
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
-    ngOnInit():void {
-        if (!this.dateSource)
-            this.dateSource = new SignUpsDataSource(new EventSignUpsDatabase(this.event$), this.paginator);
+    ngOnInit() {
+        this.dataSource = new SignUpsDataSource(this.signUpDatabase, this.paginator);
     }
 }
 
-class SignUpsDataSource extends DataSource<SignUp> {
-    constructor(private _database: EventSignUpsDatabase, private _paginator: MatPaginator) {
+
+export class SignUpsDataSource extends DataSource<SignUp> {
+    constructor(private _database: SignUpsDatabase, private _paginator: MatPaginator) {
         super();
     }
 
@@ -78,7 +77,6 @@ class SignUpsDataSource extends DataSource<SignUp> {
 
         return Observable.merge(...displayDataChanges).map(() => {
             const data = this._database.data.slice();
-
             // Grab the page's slice of data.
             const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
             return data.splice(startIndex, this._paginator.pageSize);
@@ -86,21 +84,4 @@ class SignUpsDataSource extends DataSource<SignUp> {
     }
 
     disconnect() {}
-
-    length() {
-        if (this._database.data) {
-            const data = this._database.data.slice();
-            return data.length;
-        }
-        return 0;
-    }
-}
-
-class EventSignUpsDatabase {
-    dataChange: BehaviorSubject<Event> = new BehaviorSubject<Event>(new Event());
-    get data(): SignUp[] { return this.dataChange.value.sign_ups; }
-
-    constructor(events$: Observable<Event>) {
-        events$.subscribe(this.dataChange);
-    }
 }
