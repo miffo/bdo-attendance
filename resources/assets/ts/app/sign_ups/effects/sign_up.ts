@@ -13,10 +13,24 @@ export class SignUpEffects {
     }
 
     @Effect()
-    selectSignup$: Observable<Action> = this.actions$
+    selectSignUp$: Observable<Action> = this.actions$
         .ofType(signUp.SELECT)
         .map(action => (action as signUp.Select).payload)
-            .switchMap((payload) => this.http.get(``))
-        .map(response => response.json())
-        .map(payload => ({type: signUp.LOAD, payload: { sign_up: payload.sign_ups[0]}}));
+            .switchMap((payload) => this.http.get(`graphql?query=query{
+                sign_ups(id:${payload}){
+                    comment,
+                    attending,   
+                    event{id,name},
+                    user{id,name},
+                    character{id,name,class_name},
+                    created_at,
+                    updated_at,
+                }
+            }`)
+            .map(response => response.json())
+            .map(result => {
+                console.log(result);
+
+                return ({type: signUp.LOAD, payload: { sign_up: result.data.sign_ups[0]}})
+            }));
 }

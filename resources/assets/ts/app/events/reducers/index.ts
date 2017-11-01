@@ -10,7 +10,7 @@ export interface EventsState {
 }
 
 export interface State extends fromRoot.State {
-    'events': EventsState;
+    events: EventsState;
 }
 
 export const reducers = {
