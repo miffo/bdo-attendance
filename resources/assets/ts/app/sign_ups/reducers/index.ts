@@ -1,17 +1,17 @@
 import {createFeatureSelector, createSelector} from "@ngrx/store";
 
-import * as fromSignUps from "./sign_up";
+import * as fromSignUp from "./sign_up";
 import * as fromRoot from '../../reducers';
 
-export interface State extends fromRoot.State {
-    sign_ups: fromSignUps.State;
+export interface SignUpsState extends fromRoot.State {
+    sign_ups: fromSignUp.State;
 }
 
 export const reducers = {
-    sign_ups: fromSignUps.reducer
+    sign_ups: fromSignUp.reducer
 };
 
-export const getSignUpsState = createFeatureSelector<State>('sign_ups');
+export const getSignUpsState = createFeatureSelector<SignUpsState>('sign_ups');
 
 export const getSignUpEntityState = createSelector(
     getSignUpsState,

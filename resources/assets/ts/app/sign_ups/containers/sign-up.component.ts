@@ -1,4 +1,3 @@
-
 import {Component, Inject, OnDestroy} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import {Store} from "@ngrx/store";
@@ -33,9 +32,9 @@ export class SignUpComponent implements OnDestroy {
 
     signUp$: Observable<SignUp>;
     actionsSubscription: Subscription;
-    private store: Store<fromSignUps.State>;
+    private store: Store<fromSignUps.SignUpsState>;
 
-    constructor(@Inject(Store) store: Store<fromSignUps.State>, @Inject(ActivatedRoute) route: ActivatedRoute) {
+    constructor(@Inject(Store) store: Store<fromSignUps.SignUpsState>, @Inject(ActivatedRoute) route: ActivatedRoute) {
         this.store = store;
         this.actionsSubscription = route.params
             .map(params => new signUps.Select(params.id))
