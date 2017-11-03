@@ -17,16 +17,17 @@ export class SignUpEffects {
         .ofType(signUp.SELECT)
         .map(action => (action as signUp.Select).payload)
             .switchMap((payload) => this.http.get(`graphql?query=query{
-                    sign_ups(id:${payload}){
-                        comment,
-                        attending,   
-                        event{id,name},
-                        user{id,name},
-                        character{id,name,class_name},
-                        created_at,
-                        updated_at,
-                    }
-                }`)
+                        sign_ups(id:${payload}){
+                            id,
+                            comment,
+                            attending,   
+                            event{id,name},
+                            user{id,name},
+                            character{id,name,class_name},
+                            created_at,
+                            updated_at
+                        }
+                    }`)
                 .map(response => response.json())
                 .map(result => new signUp.Load({sign_up: result.data.sign_ups[0]}))
                 .catch((err) => Observable.of(new signUp.LoadFail(err)))
