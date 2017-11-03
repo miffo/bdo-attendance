@@ -1,5 +1,4 @@
 import {isDevMode, NgModule} from "@angular/core";
-import {RouterModule} from "@angular/router";
 import {StoreModule} from '@ngrx/store';
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserModule} from '@angular/platform-browser';
@@ -11,11 +10,15 @@ import {EffectsModule} from "@ngrx/effects";
 
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 
-import {SharedModule} from "./shared/shared-module";
-import {CoreModule} from "./core/core-module";
-import {EventsModule} from "./events/events.module";
 import {AppRoutesModule} from "./app.routes.module";
 
+import {AfkModule} from "./afk/afk.module";
+import {CharactersModule} from "./characters/characters.module";
+import {CoreModule} from "./core/core-module";
+import {EventsModule} from "./events/events.module";
+import {SharedModule} from "./shared/shared-module";
+import {SignUpsModule} from "./sign_ups/sign-ups.module";
+import {UsersModule} from "./users/users.module";
 
 import {reducers, metaReducers} from './reducers';
 
@@ -33,6 +36,10 @@ const imports: any[] = [
     CoreModule,
     SharedModule,
     EventsModule,
+    CharactersModule,
+    UsersModule,
+    SignUpsModule,
+    AfkModule,
     MatSidenavModule,
     StoreModule.forRoot(reducers, {metaReducers}),
     EffectsModule.forRoot([]),
