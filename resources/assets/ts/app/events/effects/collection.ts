@@ -14,13 +14,15 @@ import {Event} from '../models/event';
 
 @Injectable()
 export class CollectionEffects {
-    constructor(@Inject(Actions) private actions$: Actions, @Inject(Http) private http: Http) {}
+    constructor(@Inject(Actions) private actions$:Actions, @Inject(Http) private http:Http) {}
 
     @Effect()
-    loadCollection$: Observable<Action> = this.actions$
+    loadCollection$:Observable<Action> = this.actions$
         .ofType(collection.LOAD)
         .switchMap(() => this.http.get("graphql?query=query{events{id, name, event_date, last_sign_up_date, created_at, updated_at}}")
             .map(response => response.json())
-            .map(payload => ({type: collection.LOAD_SUCCESS, payload: payload.data})));
+            .map(payload => new collection.LoadSuccess(payload.data))
+            .catch((err) => Observable.of(new collection.LoadFail(err)))
+        );
 
 }

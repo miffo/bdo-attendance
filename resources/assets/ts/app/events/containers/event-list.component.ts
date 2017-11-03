@@ -24,9 +24,9 @@ import {Event} from "../models/event";
 
 export class EventListComponent implements OnInit
 {
-    public events$: Observable<Event[]>;
+    public events$:Observable<Event[]>;
 
-    constructor(@Inject(Store) private store: Store<fromEvents.State>) {
+    constructor(@Inject(Store) private store:Store<fromEvents.State>) {
         this.events$ = this.store.select(fromEvents.getEventCollection);
     }
 

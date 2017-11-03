@@ -3,14 +3,13 @@ import {createEntityAdapter, EntityAdapter, EntityState} from "@ngrx/entity";
 import {Event} from "../models/event";
 import * as event from "../actions/event";
 import * as collection from "../actions/collection";
-import {Update} from "@ngrx/entity/src/models";
 
 export interface State extends EntityState<Event> {
     selectedEventId: number | null;
 }
 
 export const adapter: EntityAdapter<Event> = createEntityAdapter<Event>({
-    selectId: (event: Event) => event.id,
+    selectId: (event: Event) => {console.log (event); return event.id},
     sortComparer: false
 });
 
@@ -19,6 +18,7 @@ export const initialState: State = adapter.getInitialState({
 });
 
 export function reducer(state = initialState, action: event.Actions | collection.Actions): State {
+    console.log("TEST", action);
     switch (action.type) {
         case collection.LOAD_SUCCESS: {
             return {

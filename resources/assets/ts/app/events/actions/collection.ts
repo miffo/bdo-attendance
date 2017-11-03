@@ -13,13 +13,13 @@ export class Load implements Action {
 export class LoadSuccess implements Action {
     readonly type = LOAD_SUCCESS;
 
-    constructor(public payload: {events:Event[]}) {}
+    constructor(public payload:{events:Event[]}) {}
 }
 
 export class LoadFail implements Action {
     readonly type = LOAD_FAIL;
 
-    constructor(public payload: any) {}
+    constructor(public payload:any) {}
 }
 
 export type Actions =

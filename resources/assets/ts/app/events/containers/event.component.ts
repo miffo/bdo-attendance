@@ -35,13 +35,12 @@ import {Event} from '../models/event';
 })
 export class EventComponent implements OnDestroy
 {
-    test = new event.Select(2);
-    store: Store<fromEvents.State>;
-    event$: Observable<Event>;
-    isSelectedEventInCollection$: Observable<boolean>;
-    actionsSubscription: Subscription;
+    store:Store<fromEvents.State>;
+    event$:Observable<Event>;
+    isSelectedEventInCollection$:Observable<boolean>;
+    actionsSubscription:Subscription;
 
-    constructor(@Inject(Store) store: Store<fromEvents.State>, @Inject(ActivatedRoute) route: ActivatedRoute) {
+    constructor(@Inject(Store) store:Store<fromEvents.State>, @Inject(ActivatedRoute) route:ActivatedRoute) {
         this.store = store;
         this.actionsSubscription = route.params
             .map(params => new event.Select(params.id))
@@ -50,7 +49,7 @@ export class EventComponent implements OnDestroy
         this.isSelectedEventInCollection$ = store.select(fromEvents.isSelectedEventInCollection);
     }
 
-    ngOnDestroy(): void {
+    ngOnDestroy():void {
         this.actionsSubscription.unsubscribe();
     }
 }

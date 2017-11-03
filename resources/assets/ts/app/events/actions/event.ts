@@ -2,43 +2,29 @@ import {Action} from "@ngrx/store";
 
 import {Event} from "../models/event";
 
-export const SEARCH = "[Event] Search";
-export const SEARCH_COMPLETE = "[Event] Search Complete";
-export const SEARCH_ERROR = "[Event] Search Error";
-export const LOAD = "[Event] Load";
 export const SELECT = "[Event] Select";
+export const LOAD = "[Event] Load";
+export const LOAD_FAIL = "[Event] Load Fail";
 
-export class Search implements Action {
-    readonly type = SEARCH;
-}
+export class Select implements Action {
+    readonly type = SELECT;
 
-export class SearchComplete implements Action {
-    readonly type = SEARCH_COMPLETE;
-
-    constructor(public payload: Event[]) {}
-}
-
-export class SearchError implements Action {
-    readonly type = SEARCH_ERROR;
-
-    constructor(public payload: any) {}
+    constructor(public payload:number) {}
 }
 
 export class Load implements Action {
     readonly type = LOAD;
 
-    constructor(public payload: {event:Event}) {}
+    constructor(public payload:{event:Event}) {}
 }
 
-export class Select implements Action {
-    readonly type = SELECT;
+export class LoadFail implements Action {
+    readonly type = LOAD_FAIL;
 
-    constructor(public payload: number) {}
+    constructor(public payload:any) {}
 }
 
 export type Actions =
-    | Search
-    | SearchComplete
-    | SearchError
+    | Select
     | Load
-    | Select;
+    | LoadFail;
