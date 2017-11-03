@@ -1,4 +1,4 @@
-import {Component, Inject} from "@angular/core";
+import {Component, Inject, OnDestroy, OnInit} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import {Store} from "@ngrx/store";
 
@@ -20,7 +20,7 @@ import {User} from "../models/user";
     styles: [`
     `]
 })
-export class UserListComponent
+export class UserListComponent implements OnInit, OnDestroy
 {
     public users$: Observable<User[]>;
 
@@ -30,5 +30,9 @@ export class UserListComponent
 
     ngOnInit(): void {
         this.store.dispatch(new user.LoadAll());
+    }
+
+    ngOnDestroy(): void {
+
     }
 }

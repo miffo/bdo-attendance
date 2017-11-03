@@ -33,7 +33,5 @@ export const {
 export const getSelectedUser = createSelector(
     getUserEntities,
     getSelectedUserId,
-    (entities, selectedId) => {
-        return selectedId && entities[selectedId];
-    }
+    (entities, selectedId) => selectedId && entities[selectedId]
 );

@@ -14,18 +14,21 @@ export class UserEffect {
         .ofType(user.SELECT)
         .map(action => (action as user.Select).payload)
             .switchMap(payload => this.http.get(`graphql?query=query{
-                    sign_ups(id:${payload}){
-                        comment,
-                        attending,   
-                        event{id,name},
-                        user{id,name},
-                        character{id,name,class_name},
+                    users(id:${payload}){
+                        name,
+                        family_name,
+                        email,
+                        default_character{id,class_name,name,level},
+                        characters{id,name,level,class_name},
+                        afk{id,reason,from_date,to_date},
+                        sign_ups{id,attending,event{id,name,event_date}},
+                        attended_events{id,name,event_date},
                         created_at,
-                        updated_at,
+                        updated_at
                     }
                 }`)
                 .map(response => response.json())
-                .map(result => (new user.Load({user:result.data.users[0]})))
+                .map(result => new user.Load({user:result.data.users[0]}))
                 .catch((err) => Observable.of(new user.LoadFail(err)))
             );
 
@@ -33,18 +36,17 @@ export class UserEffect {
     LoadAllUsers: Observable<Action> = this.actions$
         .ofType(user.LOAD_ALL)
         .switchMap(() => this.http.get(`graphql?query=query{
-                sign_ups{
-                    comment,
-                    attending,   
-                    event{id,name},
-                    user{id,name},
-                    character{id,name,class_name},
-                    created_at,
-                    updated_at,
-                }
-            }`)
+                    users{
+                        name,
+                        family_name,
+                        email,
+                        default_character{id,class_name,name,level},
+                        created_at,
+                        updated_at
+                    }
+                }`)
             .map(response => response.json())
-            .map(result => (new user.LoadAllSuccess(result.data)))
+            .map(result => new user.LoadAllSuccess(result.data))
             .catch((err) => Observable.of(new user.LoadAllFail(err)))
         );
 }

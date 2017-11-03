@@ -14,12 +14,14 @@ export class User
     default_character: Character;
     afk: Afk[];
     sign_ups: SignUp[];
-    attended: Event[];
+    attended_events: Event[];
+    created_at: Date;
+    updated_at: Date;
 
     constructor() {
         this.characters = [];
         this.afk = [];
         this.sign_ups = [];
-        this.attended = [];
+        this.attended_events = [];
     }
 }
