@@ -9,6 +9,8 @@ import { Component } from '@angular/core';
         Bdo-Attendence
         <app-nav-item routerLink="/dashboard">Dashboard</app-nav-item>
         <app-nav-item routerLink="/events">Events</app-nav-item>
+        <app-nav-item routerLink="/afk">Afk</app-nav-item>
+        <app-nav-item routerLink="/users">Users</app-nav-item>
     </app-side-nav>
     <router-outlet></router-outlet>
 </app-layout>`
