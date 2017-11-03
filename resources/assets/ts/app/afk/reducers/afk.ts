@@ -52,3 +52,5 @@ export function reducer(state = initialState, action:afk.Actions):State {
         }
     }
 }
+
+export const getSelectedAfkId = (state:State) => state.selectedAfkId;
