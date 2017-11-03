@@ -6,6 +6,9 @@ import {EffectsModule} from "@ngrx/effects";
 
 import {SharedModule} from "../shared/shared-module";
 
+import {CharacterClassEffect} from "./effects/character_class";
+import {CharacterEffect} from "./effects/character";
+
 import {reducers} from "./reducers";
 
 @NgModule({
@@ -17,7 +20,7 @@ import {reducers} from "./reducers";
         RouterModule,
         SharedModule,
         StoreModule.forFeature('characters', reducers),
-        EffectsModule.forFeature([])
+        EffectsModule.forFeature([CharacterClassEffect, CharacterEffect])
     ],
     exports:[]
 })
