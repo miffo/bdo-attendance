@@ -12,17 +12,7 @@ export class CharacterClassEffect {
     @Effect()
     LoadCharacterClass$:Observable<Action> = this.actions$
         .ofType(fromCharacterClass.LOAD)
-        .switchMap(() => this.http.get(`graphql?query=query{
-                    sign_ups(){
-                        comment,
-                        attending,   
-                        event{id,name},
-                        user{id,name},
-                        character{id,name,class_name},
-                        created_at,
-                        updated_at,
-                    }
-                }`)
+        .switchMap(() => this.http.get(`graphql?query=query{character_classes{id,name}}`)
             .map(response => response.json())
             .map(result => new fromCharacterClass.LoadSuccess(result.data))
             .catch(err => Observable.of(new fromCharacterClass.LoadFail(err)))

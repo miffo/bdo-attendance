@@ -14,14 +14,14 @@ export class CharacterEffect {
         .ofType(fromCharacter.SELECT)
         .map(action => (action as fromCharacter.Select).payload)
             .switchMap((payload) => this.http.get(`graphql?query=query{
-                        sign_ups(){
-                            comment,
-                            attending,   
-                            event{id,name},
-                            user{id,name},
-                            character{id,name,class_name},
+                        characters(id:${payload}){
+                            id,
+                            name,
+                            character_class{id, name}
+                            user{id, name}
+                            level,
                             created_at,
-                            updated_at,
+                            updated_at
                         }
                     }`)
                 .map(response => response.json())
