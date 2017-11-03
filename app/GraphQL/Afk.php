@@ -2,6 +2,7 @@
 
 namespace App\GraphQL;
 
+use Carbon\Carbon;
 use Folklore\GraphQL\Support\Type As GraphQLType;
 use GraphQL\Type\Definition\Type;
 
@@ -41,9 +42,17 @@ class Afk extends GraphQLType
                 'type' => Type::nonNull(Type::string()),
                 'description' => "Date when comming back from going afk",
             ],
-            'user' => [
-                'type' => \GraphQL::Type('User'),
+            'user_id' => [
+                'type' => Type::nonNull(Type::int()),
                 'description' => "User whom the afk notice concerns",
+            ],
+            'user' => [
+                'type' => Type::nonNull(\GraphQL::Type('User')),
+                'description' => "User whom the afk notice concerns",
+            ],
+            'events' => [
+                'type' => Type::listOf(\GraphQL::Type('Event')),
+                'description' => "Registered events affected by afk",
             ],
             'created_at' => [
                 'type' => Type::nonNull(Type::string()),
@@ -54,6 +63,17 @@ class Afk extends GraphQLType
                 'description' => "Date last time afk notification was updated",
             ],
         ];
+    }
+
+    /**
+     * @param \App\Afk $root
+     * @param array $args
+     * return \App\Event[]
+     */
+    public function resolveEventsField(\App\Afk $root, $args)
+    {
+        return \App\Event::whereDate('event_date', '>', $root->from_date)
+            ->whereDate('event_date', '<', $root->to_date)->get();
     }
 
     /**

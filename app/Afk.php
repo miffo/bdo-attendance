@@ -8,8 +8,11 @@ class Afk extends Model
 {
     protected $table = "afk";
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
-        $this->belongsTo(User::class, 'user_id', 'id', "user");
+        return $this->belongsTo(User::class, 'user_id', 'id', "user");
     }
 }

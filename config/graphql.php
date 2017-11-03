@@ -118,7 +118,7 @@ return [
     'schemas' => [
         'default' => [
             'query' => [
-                'afkers' => App\GraphQL\Query\Afk::class,
+                'afk' => App\GraphQL\Query\Afk::class,
                 'character_classes' => App\GraphQL\Query\CharacterClasses::class,
                 'characters' => App\GraphQL\Query\Characters::class,
                 'events' => \App\GraphQL\Query\Events::class,
