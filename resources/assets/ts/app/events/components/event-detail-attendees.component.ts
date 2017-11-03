@@ -22,7 +22,7 @@ import {UsersDatabase} from "./event-detail.component";
         </ng-container>
         
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row [routerLink]="['/user', user.id]" *matRowDef="let user; columns: displayedColumns;"></mat-row>
+        <mat-row [routerLink]="['/users', user.id]" *matRowDef="let user; columns: displayedColumns;"></mat-row>
 
     </mat-table>
     <mat-paginator #paginator
