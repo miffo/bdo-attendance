@@ -11,19 +11,18 @@ import {Character} from "../models/character";
 @Component({
     selector: 'character',
     template: `
-        <div *ngIf="!(character$ | async)">LOADING</div>
-        <div *ngIf="(character$ | async)">
-            <mat-card>
-                <mat-card-title>
-                    Character:
-                </mat-card-title>
-                <mat-card-content>
-
-                </mat-card-content>
-            </mat-card>
-        </div>`,
-    styles: [`
-    `]
+<div *ngIf="!(character$ | async)">LOADING</div>
+<div *ngIf="(character$ | async)">
+    <mat-card>
+        <mat-card-title>
+            {{(character$ | async).name}}
+        </mat-card-title>
+        <mat-card-content>
+            <character-detail [character]="character$ | async"></character-detail>
+        </mat-card-content>
+    </mat-card>
+</div>`,
+    styles: [``]
 })
 export class CharacterComponent
 {

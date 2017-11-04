@@ -8,7 +8,7 @@ import * as afk from "../actions/afk";
 import {Afk} from "../models/afk";
 
 @Component({
-    selector: 'afk-list',
+    selector: 'afk-list-container',
     template: `
 <mat-card>
     <mat-card-title>

@@ -24,8 +24,8 @@ import {EventUsersDatabase} from "./event-detail.component";
                     </mat-cell>
                 </ng-container>
 
-                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                <mat-row [routerLink]="['/users', user.id]" *matRowDef="let user; columns: displayedColumns;"></mat-row>
+                <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+                <mat-row [routerLink]="['/users', user.id]" *matRowDef="let user; columns: displayColumns;"></mat-row>
 
             </mat-table>
             <mat-paginator #paginator
@@ -40,7 +40,7 @@ import {EventUsersDatabase} from "./event-detail.component";
 })
 export class EventDetailAttendeesComponent implements OnInit, OnDestroy
 {
-    displayedColumns = ['name'];
+    displayColumns = ['name'];
     dataSource: UsersDataSource | null;
     @Input() usersDatabase: EventUsersDatabase;
     @Input() @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -60,7 +60,6 @@ class UsersDataSource extends DataSource<User> {
         super();
     }
 
-    /** Connect function called by the table to retrieve one stream containing the data to render. */
     connect(): Observable<User[]> {
         const displayDataChanges = [
             this._database.dataChange,
@@ -70,7 +69,6 @@ class UsersDataSource extends DataSource<User> {
         return Observable.merge(...displayDataChanges).map(() => {
             const data = this._database.data.slice();
 
-            // Grab the page's slice of data.
             const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
             return data.splice(startIndex, this._paginator.pageSize);
         });

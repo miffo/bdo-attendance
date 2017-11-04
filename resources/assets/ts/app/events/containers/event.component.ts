@@ -11,7 +11,7 @@ import {Observable} from "rxjs/Observable";
 import {Event} from '../models/event';
 
 @Component({
-    selector: 'event',
+    selector: 'event-container',
     template: `
 <div *ngIf="!(event$ | async)">LOADING</div>
 <div *ngIf="(event$ | async)">
@@ -51,5 +51,6 @@ export class EventComponent implements OnDestroy
 
     ngOnDestroy():void {
         this.actionsSubscription.unsubscribe();
+        this.store.dispatch(new event.UnSelect())
     }
 }

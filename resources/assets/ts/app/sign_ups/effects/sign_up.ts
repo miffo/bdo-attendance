@@ -21,9 +21,9 @@ export class SignUpEffects {
                             id,
                             comment,
                             attending,   
-                            event{id,name},
+                            event{id,name,event_date},
                             user{id,name},
-                            character{id,name,class_name},
+                            character{id,name,level,class_name},
                             created_at,
                             updated_at
                         }

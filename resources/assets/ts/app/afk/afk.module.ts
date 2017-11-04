@@ -10,6 +10,8 @@ import {reducers} from "./reducers";
 import {AfkEffects} from "./effects/afk";
 
 import {AfkComponent} from "./containers/afk.component";
+import {AfkDetailComponent} from "./components/afk-detail.component";
+import {AfkDetailViewComponent} from "./components/afk-detail-view.component";
 import {AfkListComponent} from "./containers/afk-list.component";
 import {AfkListViewComponent} from "./components/afk-list-view.component";
 
@@ -17,6 +19,8 @@ import {AfkListViewComponent} from "./components/afk-list-view.component";
     providers:[],
     declarations: [
         AfkComponent,
+        AfkDetailComponent,
+        AfkDetailViewComponent,
         AfkListComponent,
         AfkListViewComponent
     ],

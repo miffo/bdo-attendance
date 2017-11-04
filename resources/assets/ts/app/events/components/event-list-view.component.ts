@@ -6,7 +6,7 @@ import {MatPaginator} from "@angular/material";
 import {Event} from "../models/event";
 
 @Component({
-    selector: 'event-list',
+    selector: 'event-list-view',
     template: `
 <div>
     <mat-table #table [dataSource]="eventDateSource">
@@ -84,7 +84,6 @@ class EventsDataSource extends DataSource<Event> {
         super();
     }
 
-    /** Connect function called by the table to retrieve one stream containing the data to render. */
     connect(): Observable<Event[]> {
         const displayDataChanges = [
             this._database.dataChange,
@@ -94,7 +93,6 @@ class EventsDataSource extends DataSource<Event> {
         return Observable.merge(...displayDataChanges).map(() => {
             const data = this._database.data.slice();
 
-            // Grab the page's slice of data.
             const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
             return data.splice(startIndex, this._paginator.pageSize);
         });

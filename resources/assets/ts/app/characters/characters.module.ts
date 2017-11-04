@@ -7,6 +7,7 @@ import {EffectsModule} from "@ngrx/effects";
 import {SharedModule} from "../shared/shared-module";
 
 import {CharacterComponent} from "./containers/character.component";
+import {CharacterDetailComponent} from "./components/character-detail.component";
 
 import {CharacterClassEffect} from "./effects/character_class";
 import {CharacterEffect} from "./effects/character";
@@ -16,7 +17,8 @@ import {reducers} from "./reducers";
 @NgModule({
     providers:[],
     declarations: [
-        CharacterComponent
+        CharacterComponent,
+        CharacterDetailComponent
     ],
     imports:[
         CommonModule,

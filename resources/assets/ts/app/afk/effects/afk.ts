@@ -36,7 +36,7 @@ export class AfkEffects {
                         afk(id:${payload}){
                             id,
                             user{id,name,default_character{name, class_name}},
-                            events{id,name},
+                            affected_events{id,name,event_date},
                             reason,
                             from_date,
                             to_date,

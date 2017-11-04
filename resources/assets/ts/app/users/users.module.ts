@@ -7,18 +7,28 @@ import {EffectsModule} from "@ngrx/effects";
 import {SharedModule} from "../shared/shared-module";
 
 import {reducers} from "./reducers";
+
 import {UserComponent} from "./containers/user.component";
-import {UserListComponent} from "./containers/user-list.component";
-import {UserEffect} from "./effects/user";
 import {UserListViewComponent} from "./components/user-list-view.component";
+import {UserDetailComponent} from "./components/user-detail.component";
+import {UserDetailAfkComponent} from "./components/user-detail-afk.component";
+import {UserDetailCharactersComponent} from "./components/user-detail-characters.component";
+import {UserDetailViewComponent} from "./components/user-detail-view.component";
+import {UserListComponent} from "./containers/user-list.component";
+
+import {UserEffect} from "./effects/user";
 
 @NgModule({
-    providers:[],
     declarations: [
         UserComponent,
+        UserDetailComponent,
+        UserDetailAfkComponent,
+        UserDetailCharactersComponent,
+        UserDetailViewComponent,
         UserListComponent,
         UserListViewComponent
     ],
+    providers:[],
     imports:[
         CommonModule,
         SharedModule,

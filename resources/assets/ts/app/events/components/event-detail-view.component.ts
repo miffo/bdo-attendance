@@ -14,7 +14,6 @@ import {Component, Input} from "@angular/core";
         {{event.event_date}}
     </span>
 
-
     Last sign up date:
     <span>
         {{event.last_sign_up_date}}

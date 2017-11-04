@@ -37,8 +37,8 @@ export function reducer(state = initialState, action:afk.Actions):State {
                 selectedAfkId: state.selectedAfkId
             };
             return {
-                ...newState,
-                ...adapter.updateOne({id: action.payload.afk.id, changes: action.payload.afk}, state)
+                ...adapter.updateOne({id: action.payload.afk.id, changes: action.payload.afk}, newState),
+                selectedAfkId: state.selectedAfkId
             }
         }
         case afk.LOAD_All_SUCCESS: {

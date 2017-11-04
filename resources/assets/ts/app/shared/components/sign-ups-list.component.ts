@@ -23,7 +23,7 @@ import {SignUp} from "../../sign_ups/models/sign_up";
             </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="charactar_name">
+        <ng-container matColumnDef="character_name">
             <mat-header-cell *matHeaderCellDef> Character name </mat-header-cell>
             <mat-cell *matCellDef="let signUp"
                       matTooltip="Class: {{signUp.character.class_name}}">
@@ -49,7 +49,7 @@ import {SignUp} from "../../sign_ups/models/sign_up";
             </mat-cell>
         </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
         <mat-row [routerLink]="['/signUps', signUp.id]" *matRowDef="let signUp; columns: displayColumns;"></mat-row>
 
     </mat-table>
@@ -86,7 +86,6 @@ class SignUpsDataSource extends DataSource<SignUp> {
         super();
     }
 
-    /** Connect function called by the table to retrieve one stream containing the data to render. */
     connect(): Observable<SignUp[]> {
         const displayDataChanges = [
             this._database.dataChange,
@@ -95,7 +94,7 @@ class SignUpsDataSource extends DataSource<SignUp> {
 
         return Observable.merge(...displayDataChanges).map(() => {
             const data = this._database.data.slice();
-            // Grab the page's slice of data.
+
             const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
             return data.splice(startIndex, this._paginator.pageSize);
         });

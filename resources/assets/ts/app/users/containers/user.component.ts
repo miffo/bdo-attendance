@@ -9,16 +9,16 @@ import * as user from "../actions/user";
 import {User} from "../models/user";
 
 @Component({
-    selector: 'user',
+    selector: 'user-container',
     template:`
 <div *ngIf="!(user$ | async)">LOADING</div>
 <div *ngIf="(user$ | async)">
     <mat-card>
         <mat-card-title>
-            User:
+            {{(user$ | async).name}}
         </mat-card-title>
         <mat-card-content>
-            
+            <user-detail [user$]="user$"></user-detail>
         </mat-card-content>
     </mat-card>
 </div>`,

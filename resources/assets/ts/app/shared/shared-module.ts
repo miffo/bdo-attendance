@@ -4,6 +4,7 @@ import {
     MatCardModule, MatTableModule, MatPaginatorModule, MatGridListModule, MatTooltipModule
 } from '@angular/material';
 import {SignUpsListComponent} from "./components/sign-ups-list.component";
+import {EventsListComponent} from "./components/events-list.component";
 
 const imports:any[] = [
     MatCardModule,
@@ -15,7 +16,8 @@ const imports:any[] = [
 ];
 
 const declarations:any[] = [
-    SignUpsListComponent
+    SignUpsListComponent,
+    EventsListComponent
 ];
 
 @NgModule({

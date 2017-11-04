@@ -10,7 +10,7 @@ import * as signUps from "../actions/sign_up";
 import {SignUp} from "../models/sign_up";
 
 @Component({
-    selector:'sign-up',
+    selector:'sign-up-container',
     template:`
 <div *ngIf="!(signUp$ | async)">LOADING</div>
 <div *ngIf="(signUp$ | async)">

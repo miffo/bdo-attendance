@@ -7,7 +7,7 @@ import * as user from "../actions/user";
 import {User} from "../models/user";
 
 @Component({
-    selector: 'user-list',
+    selector: 'user-list-container',
     template: `
 <mat-card>
     <mat-card-title>

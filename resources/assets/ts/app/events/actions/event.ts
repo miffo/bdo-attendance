@@ -3,6 +3,7 @@ import {Action} from "@ngrx/store";
 import {Event} from "../models/event";
 
 export const SELECT = "[Event] Select";
+export const UNSELECT = "[Event] Select";
 export const LOAD = "[Event] Load";
 export const LOAD_FAIL = "[Event] Load Fail";
 
@@ -10,6 +11,10 @@ export class Select implements Action {
     readonly type = SELECT;
 
     constructor(public payload:number) {}
+}
+
+export class UnSelect implements Action {
+    readonly type = UNSELECT;
 }
 
 export class Load implements Action {

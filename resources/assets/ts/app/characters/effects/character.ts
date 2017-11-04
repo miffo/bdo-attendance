@@ -25,7 +25,7 @@ export class CharacterEffect {
                         }
                     }`)
                 .map(response => response.json())
-                .map(result => new fromCharacter.Load(result.data.character[0]))
+                .map(result => new fromCharacter.Load({character: result.data.characters[0]}))
                 .catch(err => Observable.of(new fromCharacter.LoadFail(err)))
             );
 }
