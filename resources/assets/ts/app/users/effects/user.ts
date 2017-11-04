@@ -15,6 +15,7 @@ export class UserEffect {
         .map(action => (action as user.Select).payload)
             .switchMap(payload => this.http.get(`graphql?query=query{
                     users(id:${payload}){
+                        id,
                         name,
                         family_name,
                         email,
@@ -37,6 +38,7 @@ export class UserEffect {
         .ofType(user.LOAD_ALL)
         .switchMap(() => this.http.get(`graphql?query=query{
                     users{
+                        id,
                         name,
                         family_name,
                         email,

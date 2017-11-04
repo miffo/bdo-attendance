@@ -14,7 +14,7 @@ import {User} from "../models/user";
         Users
     </mat-card-title>
     <mat-card-content>
-
+        <user-list-view [users$]="users$"></user-list-view>
     </mat-card-content>
 </mat-card>`,
     styles: [`

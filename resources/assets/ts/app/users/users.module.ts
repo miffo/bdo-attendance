@@ -10,12 +10,14 @@ import {reducers} from "./reducers";
 import {UserComponent} from "./containers/user.component";
 import {UserListComponent} from "./containers/user-list.component";
 import {UserEffect} from "./effects/user";
+import {UserListViewComponent} from "./components/user-list-view.component";
 
 @NgModule({
     providers:[],
     declarations: [
         UserComponent,
-        UserListComponent
+        UserListComponent,
+        UserListViewComponent
     ],
     imports:[
         CommonModule,

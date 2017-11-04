@@ -47,6 +47,8 @@ export function reducer(state = initialState, action:user.Actions): State {
                     defaultCharacter.name = user.default_character.name;
                     defaultCharacter.level = user.default_character.level;
                     newUser.default_character = defaultCharacter;
+                    newUser.created_at = user.created_at;
+                    newUser.updated_at = user.updated_at;
                     return newUser;
                 }), state),
                 selectedUserId: state.selectedUserId
