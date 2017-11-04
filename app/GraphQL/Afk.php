@@ -50,7 +50,7 @@ class Afk extends GraphQLType
                 'type' => Type::nonNull(\GraphQL::Type('User')),
                 'description' => "User whom the afk notice concerns",
             ],
-            'events' => [
+            'affected_events' => [
                 'type' => Type::listOf(\GraphQL::Type('Event')),
                 'description' => "Registered events affected by afk",
             ],
@@ -70,7 +70,7 @@ class Afk extends GraphQLType
      * @param array $args
      * return \App\Event[]
      */
-    public function resolveEventsField(\App\Afk $root, $args)
+    public function resolveAffectedEventsField(\App\Afk $root, $args)
     {
         return \App\Event::whereDate('event_date', '>', $root->from_date)
             ->whereDate('event_date', '<', $root->to_date)->get();
