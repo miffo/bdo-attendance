@@ -32,7 +32,10 @@ import {Event} from "../models/event";
         
         <ng-container matColumnDef="created_at">
             <mat-header-cell *matHeaderCellDef> Created at </mat-header-cell>
-            <mat-cell *matCellDef="let event"><span matTooltip="Updated at: {{event.updated_at}}"> {{event.created_at}} </span></mat-cell>
+            <mat-cell *matCellDef="let event"
+                      matTooltip="Updated at: {{event.updated_at}}">
+                {{event.created_at}}
+            </mat-cell>
         </ng-container>
         
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

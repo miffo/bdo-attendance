@@ -4,6 +4,7 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {Event} from "../models/event";
 import {User} from "../../users/models/user";
 import {SignUp} from "../../sign_ups/models/sign_up";
+import {SignUpsDatabase} from "../../shared/components/sign-ups-list.component";
 
 @Component({
     selector: 'event-detail',
@@ -15,7 +16,7 @@ import {SignUp} from "../../sign_ups/models/sign_up";
     </mat-grid-tile>
     <mat-grid-tile>
         <mat-grid-tile-header>Sign Ups</mat-grid-tile-header>
-        <event-detail-sign-ups [signUpDatabase]="signUpsDatabase"></event-detail-sign-ups>
+        <sign-ups-list [displayColumns]="signUpsDisplayColumns" [signUpDatabase]="signUpsDatabase"></sign-ups-list>
     </mat-grid-tile>    
     <mat-grid-tile>
         <mat-grid-tile-header>Attendees</mat-grid-tile-header>
@@ -28,8 +29,10 @@ import {SignUp} from "../../sign_ups/models/sign_up";
 
 export class EventDetailComponent implements OnInit, OnDestroy
 {
-    @Input() event$: Observable<Event>;
-    @Input() isEventInCollection: boolean;
+    @Input() event$:Observable<Event>;
+    @Input() isEventInCollection:boolean;
+
+    signUpsDisplayColumns = ['attending', 'user_name', 'created_at'];
 
     usersDatabase = new EventUsersDatabase();
     signUpsDatabase = new EventSignUpsDatabase();
@@ -43,26 +46,28 @@ export class EventDetailComponent implements OnInit, OnDestroy
     }
 }
 
-export class EventUsersDatabase {
-    dataChange: BehaviorSubject<Event> = new BehaviorSubject<Event>(new Event());
+export class EventUsersDatabase
+{
+    dataChange:BehaviorSubject<Event> = new BehaviorSubject<Event>(new Event());
 
-    get data(): User[] { return this.dataChange.value.attendees; }
+    get data():User[] { return this.dataChange.value.attendees; }
 
     constructor() {}
 
-    setData(event$: Observable<Event>): void {
+    setData(event$:Observable<Event>): void {
         event$.subscribe(this.dataChange);
     }
 }
 
-export class EventSignUpsDatabase {
-    dataChange: BehaviorSubject<Event> = new BehaviorSubject<Event>(new Event());
+export class EventSignUpsDatabase implements SignUpsDatabase<Event>
+{
+    dataChange:BehaviorSubject<Event> = new BehaviorSubject<Event>(new Event());
 
-    get data(): SignUp[] { return this.dataChange.value.sign_ups }
+    get data():SignUp[] { return this.dataChange.value.sign_ups }
 
     constructor() {}
 
-    setData(event$: Observable<Event>):void {
+    setData(event$:Observable<Event>):void {
         event$.subscribe(this.dataChange);
     }
 }

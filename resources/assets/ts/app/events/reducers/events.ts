@@ -9,7 +9,7 @@ export interface State extends EntityState<Event> {
 }
 
 export const adapter: EntityAdapter<Event> = createEntityAdapter<Event>({
-    selectId: (event: Event) => {console.log (event); return event.id},
+    selectId: (event: Event) => event.id,
     sortComparer: false
 });
 

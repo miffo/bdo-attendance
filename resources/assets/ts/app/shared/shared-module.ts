@@ -1,7 +1,9 @@
 import {NgModule} from "@angular/core";
+import {RouterModule} from "@angular/router";
 import {
     MatCardModule, MatTableModule, MatPaginatorModule, MatGridListModule, MatTooltipModule
 } from '@angular/material';
+import {SignUpsListComponent} from "./components/sign-ups-list.component";
 
 const imports:any[] = [
     MatCardModule,
@@ -9,10 +11,11 @@ const imports:any[] = [
     MatTableModule,
     MatPaginatorModule,
     MatTooltipModule,
+    RouterModule
 ];
 
 const declarations:any[] = [
-
+    SignUpsListComponent
 ];
 
 @NgModule({

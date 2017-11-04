@@ -18,10 +18,9 @@ import {EventUsersDatabase} from "./event-detail.component";
 
                 <ng-container matColumnDef="name">
                     <mat-header-cell *matHeaderCellDef> Username </mat-header-cell>
-                    <mat-cell *matCellDef="let user">
-                        <span matTooltip="Charactar:{{user.default_character.name}}({{user.default_character.class_name}})">
+                    <mat-cell *matCellDef="let user"
+                              matTooltip="Charactar:{{user.default_character.name}}({{user.default_character.class_name}})">
                             {{user.name}}
-                        </span>
                     </mat-cell>
                 </ng-container>
 

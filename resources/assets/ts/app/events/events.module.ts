@@ -14,10 +14,9 @@ import {EventListComponent} from "./containers/event-list.component";
 import {EventListViewComponent} from "./components/event-list-view.component";
 import {EventDetailComponent} from "./components/event-detail.component";
 import {EventDetailViewComponent} from "./components/event-detail-view.component";
+import {EventDetailAttendeesComponent} from "./components/event-detail-attendees.component";
 
 import {reducers} from "./reducers";
-import {EventDetailSignUpsComponent} from "./components/event-detail-sign-ups.component";
-import {EventDetailAttendeesComponent} from "./components/event-detail-attendees.component";
 
 @NgModule({
     imports:[
@@ -37,7 +36,6 @@ import {EventDetailAttendeesComponent} from "./components/event-detail-attendees
         EventListViewComponent,
         EventDetailComponent,
         EventDetailAttendeesComponent,
-        EventDetailSignUpsComponent,
         EventDetailViewComponent
     ],
     exports:[]

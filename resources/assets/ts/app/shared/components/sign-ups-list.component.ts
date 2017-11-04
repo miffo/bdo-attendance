@@ -1,13 +1,12 @@
 import {Component, Input, ViewChild, OnInit, OnDestroy} from "@angular/core";
 import {MatPaginator} from "@angular/material";
 import {DataSource} from "@angular/cdk/collections";
-import {Observable} from "rxjs/Observable";
+import {BehaviorSubject, Observable} from "rxjs";
 
 import {SignUp} from "../../sign_ups/models/sign_up";
-import {EventSignUpsDatabase} from "./event-detail.component";
 
 @Component({
-    selector: 'event-detail-sign-ups',
+    selector: 'sign-ups-list',
     template: `
 <div>
     <mat-table #table [dataSource]="dataSource">
@@ -18,30 +17,40 @@ import {EventSignUpsDatabase} from "./event-detail.component";
 
         <ng-container matColumnDef="user_name">
             <mat-header-cell *matHeaderCellDef> Username </mat-header-cell>
-            <mat-cell *matCellDef="let signUp">
-                <span matTooltip="Character: {{signUp.character.name}}({{signUp.character.class_name}})">
+            <mat-cell *matCellDef="let signUp" 
+                      matTooltip="Character: {{signUp.character.name}}({{signUp.character.class_name}})">
                     {{signUp.user.name}}
-                </span>
             </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="charactar_name">
+            <mat-header-cell *matHeaderCellDef> Character name </mat-header-cell>
+            <mat-cell *matCellDef="let signUp"
+                      matTooltip="Class: {{signUp.character.class_name}}">
+                    {{signUp.character.name}}
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="event_name">
+            <mat-header-cell *matHeaderCellDef> Event name </mat-header-cell>
+            <mat-cell *matCellDef="let signUp"> {{signUp.event.name}} </mat-cell>
+        </ng-container>
+        
         <ng-container matColumnDef="attending">
             <mat-header-cell *matHeaderCellDef> Attending </mat-header-cell>
             <mat-cell *matCellDef="let signUp"> {{signUp.attending}} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="character_name">
-            <mat-header-cell *matHeaderCellDef> Character name </mat-header-cell>
-            <mat-cell *matCellDef="let signUp"> {{signUp.character.name}} </mat-cell>
-        </ng-container>
-
         <ng-container matColumnDef="created_at">
             <mat-header-cell *matHeaderCellDef> Created at </mat-header-cell>
-            <mat-cell *matCellDef="let signUp"><span matTooltip="Updated at: {{signUp.updated_at}}"> {{signUp.created_at}} </span></mat-cell>
+            <mat-cell *matCellDef="let signUp"
+                      matTooltip="Updated at: {{signUp.updated_at}}">
+                {{signUp.created_at}}
+            </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row [routerLink]="['/signUps', signUp.id]" *matRowDef="let signUp; columns: displayedColumns;"></mat-row>
+        <mat-row [routerLink]="['/signUps', signUp.id]" *matRowDef="let signUp; columns: displayColumns;"></mat-row>
 
     </mat-table>
     <mat-paginator #paginator
@@ -54,12 +63,12 @@ import {EventSignUpsDatabase} from "./event-detail.component";
     styles: [`
     `]
 })
-export class EventDetailSignUpsComponent implements OnInit, OnDestroy
+export class SignUpsListComponent implements OnInit, OnDestroy
 {
-    displayedColumns = ['attending', 'user_name', 'created_at'];
-    dataSource: SignUpsDataSource | null;
-    @Input() signUpDatabase: EventSignUpsDatabase;
-    @ViewChild(MatPaginator) paginator: MatPaginator;
+    dataSource:SignUpsDataSource | null;
+    @Input() displayColumns:string[];
+    @Input() signUpDatabase:SignUpsDatabase<any>;
+    @ViewChild(MatPaginator) paginator:MatPaginator;
 
     ngOnInit() {
         this.dataSource = new SignUpsDataSource(this.signUpDatabase, this.paginator);
@@ -73,7 +82,7 @@ export class EventDetailSignUpsComponent implements OnInit, OnDestroy
 
 
 class SignUpsDataSource extends DataSource<SignUp> {
-    constructor(private _database: EventSignUpsDatabase, private _paginator: MatPaginator) {
+    constructor(private _database: SignUpsDatabase<any>, private _paginator: MatPaginator) {
         super();
     }
 
@@ -93,4 +102,10 @@ class SignUpsDataSource extends DataSource<SignUp> {
     }
 
     disconnect() {}
+}
+
+
+export interface SignUpsDatabase<T> {
+    dataChange:BehaviorSubject<T>
+    data:SignUp[];
 }
