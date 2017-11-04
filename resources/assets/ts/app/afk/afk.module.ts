@@ -11,12 +11,14 @@ import {AfkEffects} from "./effects/afk";
 
 import {AfkComponent} from "./containers/afk.component";
 import {AfkListComponent} from "./containers/afk-list.component";
+import {AfkListViewComponent} from "./components/afk-list-view.component";
 
 @NgModule({
     providers:[],
     declarations: [
         AfkComponent,
-        AfkListComponent
+        AfkListComponent,
+        AfkListViewComponent
     ],
     imports:[
         CommonModule,

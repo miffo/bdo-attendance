@@ -15,7 +15,7 @@ import {Afk} from "../models/afk";
         Afk
     </mat-card-title>
     <mat-card-content>
-
+        <afk-list-view [afk$]="afk$"></afk-list-view>
     </mat-card-content>
 </mat-card>`,
     styles: [`

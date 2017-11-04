@@ -43,7 +43,17 @@ export function reducer(state = initialState, action:afk.Actions):State {
         }
         case afk.LOAD_All_SUCCESS: {
             return {
-                ...adapter.addMany(action.payload.afk, state),
+                ...adapter.addMany(action.payload.afk.map(afk => {
+                    let newAfk = new Afk(afk.user);
+                    newAfk.id = afk.id;
+                    newAfk.reason = afk.reason;
+                    newAfk.from_date = afk.from_date;
+                    newAfk.to_date = afk.to_date;
+                    newAfk.created_at = afk.created_at;
+                    newAfk.updated_at = afk.updated_at;
+
+                    return newAfk;
+                }), state),
                 selectedAfkId: state.selectedAfkId
             }
         }
