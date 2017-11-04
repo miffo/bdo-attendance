@@ -1,9 +1,9 @@
 import {Component, Input, ViewChild} from "@angular/core";
+import {BehaviorSubject, Observable} from "rxjs";
 import {MatPaginator} from "@angular/material";
-import {Observable} from "rxjs/Observable";
-import {Afk} from "../models/afk";
 import {DataSource} from "@angular/cdk/collections";
-import {BehaviorSubject} from "rxjs";
+
+import {Afk} from "../models/afk";
 
 @Component({
     selector: 'afk-list-view',
@@ -17,10 +17,9 @@ import {BehaviorSubject} from "rxjs";
 
         <ng-container matColumnDef="Username">
             <mat-header-cell *matHeaderCellDef> Username </mat-header-cell>
-            <mat-cell *matCellDef="let afk">
-                <span matTooltip="Character: {{afk.user.default_character.name}}({{afk.user.default_character.class_name}})">
+            <mat-cell *matCellDef="let afk"
+                      matTooltip="Character: {{afk.user.default_character.name}}({{afk.user.default_character.class_name}})">
                     {{afk.user.name}}
-                </span>
             </mat-cell>
         </ng-container>
 
@@ -41,7 +40,10 @@ import {BehaviorSubject} from "rxjs";
 
         <ng-container matColumnDef="created_at">
             <mat-header-cell *matHeaderCellDef> Created at </mat-header-cell>
-            <mat-cell *matCellDef="let afk"><span matTooltip="Updated at: {{afk.updated_at}}"> {{afk.created_at}} </span></mat-cell>
+            <mat-cell *matCellDef="let afk"
+                      matTooltip="Updated at: {{afk.updated_at}}">
+                {{afk.created_at}}
+            </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
