@@ -22,7 +22,7 @@ export class UserEffect {
                         default_character{id,class_name,name,level},
                         characters{id,name,level,class_name},
                         afk{id,reason,from_date,to_date},
-                        sign_ups{id,attending,event{id,name,event_date}},
+                        sign_ups{id,attending,event{id,name,event_date},character{id,name,class_name}, created_at, updated_at},
                         attended_events{id,name,event_date},
                         created_at,
                         updated_at

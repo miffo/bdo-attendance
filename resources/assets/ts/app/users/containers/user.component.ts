@@ -1,11 +1,12 @@
 import {Component, Inject} from "@angular/core";
-import {Observable} from "rxjs/Observable";
-import {User} from "../models/user";
+import {ActivatedRoute} from "@angular/router";
+import {Observable, Subscription, BehaviorSubject} from "rxjs";
 import {Store} from "@ngrx/store";
+
 import * as fromUsers from "../reducers";
 import * as user from "../actions/user";
-import {ActivatedRoute} from "@angular/router";
-import {Subscription} from "rxjs/Subscription";
+
+import {User} from "../models/user";
 
 @Component({
     selector: 'user',

@@ -32,7 +32,10 @@ import {User} from "../models/user";
 
         <ng-container matColumnDef="created_at">
             <mat-header-cell *matHeaderCellDef> Created at </mat-header-cell>
-            <mat-cell *matCellDef="let user"><span matTooltip="Updated at: {{user.updated_at}}"> {{user.created_at}} </span></mat-cell>
+            <mat-cell *matCellDef="let user"
+                      matTooltip="Updated at: {{user.updated_at}}">
+                {{user.created_at}}
+            </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
