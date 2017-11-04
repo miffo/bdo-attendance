@@ -31,8 +31,8 @@ export class EventDetailComponent implements OnInit, OnDestroy
     @Input() event$: Observable<Event>;
     @Input() isEventInCollection: boolean;
 
-    usersDatabase = new UsersDatabase();
-    signUpsDatabase = new SignUpsDatabase();
+    usersDatabase = new EventUsersDatabase();
+    signUpsDatabase = new EventSignUpsDatabase();
 
     ngOnInit(): void {
         this.usersDatabase.setData(this.event$);
@@ -43,26 +43,24 @@ export class EventDetailComponent implements OnInit, OnDestroy
     }
 }
 
-export class UsersDatabase {
+export class EventUsersDatabase {
     dataChange: BehaviorSubject<Event> = new BehaviorSubject<Event>(new Event());
 
     get data(): User[] { return this.dataChange.value.attendees; }
 
-    constructor() {;
-    }
+    constructor() {}
 
     setData(event$: Observable<Event>): void {
         event$.subscribe(this.dataChange);
     }
 }
 
-export class SignUpsDatabase {
+export class EventSignUpsDatabase {
     dataChange: BehaviorSubject<Event> = new BehaviorSubject<Event>(new Event());
 
     get data(): SignUp[] { return this.dataChange.value.sign_ups }
 
-    constructor() {
-    }
+    constructor() {}
 
     setData(event$: Observable<Event>):void {
         event$.subscribe(this.dataChange);

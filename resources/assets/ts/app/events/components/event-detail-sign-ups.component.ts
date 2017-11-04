@@ -1,10 +1,10 @@
-import {Component, Input, ViewChild, OnInit} from "@angular/core";
+import {Component, Input, ViewChild, OnInit, OnDestroy} from "@angular/core";
 import {MatPaginator} from "@angular/material";
 import {DataSource} from "@angular/cdk/collections";
 import {Observable} from "rxjs/Observable";
 
 import {SignUp} from "../../sign_ups/models/sign_up";
-import {SignUpsDatabase} from "./event-detail.component";
+import {EventSignUpsDatabase} from "./event-detail.component";
 
 @Component({
     selector: 'event-detail-sign-ups',
@@ -18,7 +18,11 @@ import {SignUpsDatabase} from "./event-detail.component";
 
         <ng-container matColumnDef="user_name">
             <mat-header-cell *matHeaderCellDef> Username </mat-header-cell>
-            <mat-cell *matCellDef="let signUp"> <span matTooltip="Character: {{signUp.character.name}}">{{signUp.user.name}}</span> </mat-cell>
+            <mat-cell *matCellDef="let signUp">
+                <span matTooltip="Character: {{signUp.character.name}}({{signUp.character.class_name}})">
+                    {{signUp.user.name}}
+                </span>
+            </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="attending">
@@ -33,15 +37,15 @@ import {SignUpsDatabase} from "./event-detail.component";
 
         <ng-container matColumnDef="created_at">
             <mat-header-cell *matHeaderCellDef> Created at </mat-header-cell>
-            <mat-cell *matCellDef="let signUp"> {{signUp.created_at}} </mat-cell>
+            <mat-cell *matCellDef="let signUp"><span matTooltip="Updated at: {{signUp.updated_at}}"> {{signUp.created_at}} </span></mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row [routerLink]="['/signUp', signUp.id]" *matRowDef="let signUp; columns: displayedColumns;"></mat-row>
+        <mat-row [routerLink]="['/signUps', signUp.id]" *matRowDef="let signUp; columns: displayedColumns;"></mat-row>
 
     </mat-table>
     <mat-paginator #paginator
-                   [length]="signUpDatabase?signUpDatabase.data.length:0"
+                   [length]="signUpDatabase.data.length"
                    [pageIndex]="0"
                    [pageSize]="5"
                    [pageSizeOptions]="[5, 10, 25, 50]">
@@ -50,21 +54,26 @@ import {SignUpsDatabase} from "./event-detail.component";
     styles: [`
     `]
 })
-export class EventDetailSignUpsComponent implements OnInit
+export class EventDetailSignUpsComponent implements OnInit, OnDestroy
 {
     displayedColumns = ['attending', 'user_name', 'created_at'];
     dataSource: SignUpsDataSource | null;
-    @Input() signUpDatabase: SignUpsDatabase;
+    @Input() signUpDatabase: EventSignUpsDatabase;
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
     ngOnInit() {
         this.dataSource = new SignUpsDataSource(this.signUpDatabase, this.paginator);
     }
+
+    ngOnDestroy(): void {
+        this.dataSource.disconnect();
+        this.dataSource = undefined;
+    }
 }
 
 
-export class SignUpsDataSource extends DataSource<SignUp> {
-    constructor(private _database: SignUpsDatabase, private _paginator: MatPaginator) {
+class SignUpsDataSource extends DataSource<SignUp> {
+    constructor(private _database: EventSignUpsDatabase, private _paginator: MatPaginator) {
         super();
     }
 

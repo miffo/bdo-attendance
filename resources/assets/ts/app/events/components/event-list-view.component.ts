@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from "@angular/core";
+import {Component, Input, OnInit, ViewChild, OnDestroy} from "@angular/core";
 import {BehaviorSubject, Observable} from "rxjs";
 import {DataSource} from "@angular/cdk/collections";
 import {MatPaginator} from "@angular/material";
@@ -11,12 +11,12 @@ import {Event} from "../models/event";
 <div>
     <mat-table #table [dataSource]="eventDateSource">
         <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
             <mat-cell *matCellDef="let event"> {{event.id}} </mat-cell>
         </ng-container>
         
         <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef> name </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
             <mat-cell *matCellDef="let event"> {{event.name}} </mat-cell>
         </ng-container>
         
@@ -32,7 +32,7 @@ import {Event} from "../models/event";
         
         <ng-container matColumnDef="created_at">
             <mat-header-cell *matHeaderCellDef> Created at </mat-header-cell>
-            <mat-cell *matCellDef="let event"> {{event.created_at}} </mat-cell>
+            <mat-cell *matCellDef="let event"><span matTooltip="Updated at: {{event.updated_at}}"> {{event.created_at}} </span></mat-cell>
         </ng-container>
         
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -40,7 +40,7 @@ import {Event} from "../models/event";
     
     </mat-table>
     <mat-paginator #paginator
-                   [length]="eventDateSource.length()"
+                   [length]="database.data.length"
                    [pageIndex]="0"
                    [pageSize]="5"
                    [pageSizeOptions]="[5, 10, 25, 50]">
@@ -50,19 +50,29 @@ import {Event} from "../models/event";
     `]
 })
 
-export class EventListViewComponent implements OnInit
+export class EventListViewComponent implements OnInit, OnDestroy
 {
-    count:number = 0;
     displayedColumns = ['id', 'name', 'event_date', 'last_sign_up_date', 'created_at'];
+
     eventDateSource: EventsDataSource;
+    database: EventDatabase;
 
     @Input() events$: Observable<Event[]>;
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
+    constructor() {
+        this.database = new EventDatabase();
+    }
+
     ngOnInit():void {
-        if (!this.eventDateSource)
-            this.eventDateSource = new EventsDataSource(new EventDatabase(this.events$), this.paginator);
+        this.database.setData(this.events$);
+        this.eventDateSource = new EventsDataSource(this.database, this.paginator);
+    }
+
+    ngOnDestroy(): void {
+        this.eventDateSource.disconnect();
+        this.eventDateSource = undefined;
     }
 }
 
@@ -97,9 +107,12 @@ class EventsDataSource extends DataSource<Event> {
 
 class EventDatabase {
     dataChange: BehaviorSubject<Event[]> = new BehaviorSubject<Event[]>([]);
+
     get data(): Event[] { return this.dataChange.value; }
 
-    constructor(events$: Observable<Event[]>) {
-        events$.subscribe(this.dataChange);
+    constructor() {}
+
+    setData(event$: Observable<Event[]>): void {
+        event$.subscribe(this.dataChange);
     }
 }

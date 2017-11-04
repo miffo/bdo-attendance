@@ -18,7 +18,6 @@ export const initialState: State = adapter.getInitialState({
 });
 
 export function reducer(state = initialState, action: event.Actions | collection.Actions): State {
-    console.log("TEST", action);
     switch (action.type) {
         case collection.LOAD_SUCCESS: {
             return {

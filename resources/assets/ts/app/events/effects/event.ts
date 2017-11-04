@@ -23,8 +23,8 @@ export class EventsEffects {
                         last_sign_up_date,
                         name,
                         description,
-                        sign_ups{id,attending,user{id, name},character{id, name},created_at},
-                        attendees{id,name},
+                        sign_ups{id,attending,user{id,name},character{id,name,class_name},updated_at,created_at},
+                        attendees{id,name,default_character{name,class_name}},
                         created_at,
                         updated_at,
                     }
