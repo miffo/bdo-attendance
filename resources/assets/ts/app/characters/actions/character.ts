@@ -15,8 +15,6 @@ export class Select implements Action {
 
 export class UnSelect implements Action {
     readonly type = UNSELECT;
-
-    constructor(public payload:number) {}
 }
 
 export class Load implements Action {
