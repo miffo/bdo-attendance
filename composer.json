@@ -10,7 +10,8 @@
         "folklore/graphql": "~1.0.0",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "5.5.*",
-        "laravel/tinker": "~1.0"
+        "laravel/tinker": "~1.0",
+        "restcord/restcord": "^0.1.4"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
