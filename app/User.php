@@ -57,11 +57,17 @@ class User extends Authenticatable
         return $this->hasMany(SignUp::class, "user_id", "id");
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function afk()
     {
         return $this->hasMany(Afk::class, 'user_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function attendedEvents()
     {
         return $this->belongsToMany(
@@ -73,5 +79,13 @@ class User extends Authenticatable
             'id',
             'Attended'
         )->as("Attended")->withTimestamps();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function members()
+    {
+        return $this->hasMany(Member::class, 'user_id', 'id');
     }
 }
