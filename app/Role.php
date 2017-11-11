@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
     protected $table = 'roles';
-
+    public $incrementing = false;
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */

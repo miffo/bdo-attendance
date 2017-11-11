@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 class Member extends Model
 {
     protected $table = 'members';
+    public $incrementing = false;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

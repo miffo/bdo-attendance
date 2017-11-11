@@ -15,6 +15,7 @@ $factory->define(App\Event::class, function (Faker $faker) {
         'name' => $faker->randomElement(["raid", "nodewar"]) . " " . $faker->dayOfWeek($startDate),
         'description' => $faker->text("50"),
         'event_date' => $startDate,
+        'guild_id' => 376708185081249792,
         'last_sign_up_date' => $signUpDate,
     ];
 });

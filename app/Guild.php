@@ -11,20 +11,14 @@ use Illuminate\Database\Eloquent\Model;
 class Guild extends Model
 {
     protected $table = 'guilds';
+    public $incrementing = false;
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function members()
     {
-        return $this->hasManyThrough(
-            User::class,
-            'members',
-            'guild_id',
-            'user_id',
-            'id',
-            'id'
-        );
+        return $this->hasMany(User::class,'guild_id','id');
     }
 
     /**
