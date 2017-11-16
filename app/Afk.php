@@ -11,8 +11,8 @@ class Afk extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user()
+    public function member()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id', "user");
+        return $this->belongsTo(Member::class, 'member_id', 'id', "member");
     }
 }

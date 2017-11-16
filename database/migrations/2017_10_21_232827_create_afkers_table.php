@@ -15,7 +15,7 @@ class CreateAfkersTable extends Migration
     {
         Schema::create('afk', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger("user_id")->index("user");
+            $table->unsignedInteger("member_id")->index("member");
             $table->string("reason", 255)->default("");
             $table->date("from_date");
             $table->date("to_date");

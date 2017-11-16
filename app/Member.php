@@ -11,8 +11,54 @@ use Illuminate\Database\Eloquent\Model;
 class Member extends Model
 {
     protected $table = 'members';
-    public $incrementing = false;
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function characters()
+    {
+        return $this->hasMany(Character::class, 'member_id', "id");
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function defaultCharacter()
+    {
+        return $this->hasOne(Character::class, 'id', "default_character_id");
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function signUps()
+    {
+        return $this->hasMany(SignUp::class, "member_id", "id");
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function afk()
+    {
+        return $this->hasMany(Afk::class, 'member_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function attendedEvents()
+    {
+        return $this->belongsToMany(
+            Event::class,
+            'attendees',
+            'member_id',
+            'event_id',
+            'id',
+            'id',
+            'Attended'
+        )->as("Attended")->withTimestamps();
+    }
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -20,8 +66,8 @@ class Member extends Model
     {
         return $this->belongsTo(
             Guild::class,
-            'id',
             'guild_id',
+            'id',
             'guild'
         );
     }
@@ -42,6 +88,9 @@ class Member extends Model
         );
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function user()
     {
         return $this->hasOne(User::class, 'id', 'user_id');

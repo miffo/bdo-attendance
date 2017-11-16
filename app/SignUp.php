@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Signup
+ * Class SignSp
  * @package App
  */
 class SignUp extends Model
@@ -18,9 +18,9 @@ class SignUp extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user()
+    public function member()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id', "user");
+        return $this->belongsTo(Member::class, 'member_id', 'id', "user");
     }
 
     /**

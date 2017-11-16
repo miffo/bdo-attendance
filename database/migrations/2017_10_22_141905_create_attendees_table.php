@@ -15,10 +15,10 @@ class CreateAttendeesTable extends Migration
     {
         Schema::create('attendees', function (Blueprint $table) {
             $table->unsignedInteger('event_id');
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('member_id');
             $table->timestamps();
 
-            $table->primary(['event_id', 'user_id']);
+            $table->primary(['event_id', 'member_id']);
         });
     }
 

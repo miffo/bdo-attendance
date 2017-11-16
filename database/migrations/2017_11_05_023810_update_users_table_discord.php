@@ -14,8 +14,10 @@ class UpdateUsersTableDiscord extends Migration
     public function up()
     {
         Schema::table("users", function (Blueprint $table) {
+            $table->unsignedBigInteger('id')->change();
             $table->dropColumn("password");
             $table->dropColumn("remember_token");
+            $table->string('avatar', 255)->nullable()->default(null)->after("email");
         });
     }
 
@@ -27,8 +29,10 @@ class UpdateUsersTableDiscord extends Migration
     public function down()
     {
         Schema::table("users", function (Blueprint $table) {
+            $table->increments('id')->change();
             $table->string('password')->after("email");
             $table->rememberToken()->after("password");
+            $table->dropColumn('avatar');
         });
     }
 }

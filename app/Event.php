@@ -23,10 +23,10 @@ class Event extends Model
     public function attendees()
     {
         return $this->belongsToMany(
-            User::class,
+            Member::class,
             'attendees',
             'event_id',
-            'user_id',
+            'member_id',
             'id',
             'id',
             'Attendees'

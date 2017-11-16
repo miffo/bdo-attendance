@@ -14,7 +14,7 @@ class CreateMemberRolesTable extends Migration
     public function up()
     {
         Schema::create('member_roles', function (Blueprint $table) {
-            $table->bigInteger("member_id",false, true);
+            $table->integer("member_id",false, true);
             $table->bigInteger("role_id",false, true);
             $table->primary(['member_id', 'role_id']);
         });

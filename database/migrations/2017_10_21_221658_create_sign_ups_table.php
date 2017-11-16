@@ -17,11 +17,11 @@ class CreateSignupsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('event_id');
             $table->unsignedInteger("character_id");
-            $table->unsignedInteger("user_id");
+            $table->unsignedInteger("member_id");
             $table->boolean("attending")->default(0);
             $table->string("comment", 255)->default("");
             $table->timestamps();
-            $table->index(['event_id', 'character_id', 'user_id'], "signed_up");
+            $table->index(['event_id', 'character_id', 'member_id'], "signed_up");
         });
     }
 

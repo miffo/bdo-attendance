@@ -20,13 +20,14 @@ class GuildTableSeeder extends Seeder
                 $guild->save();
 
                 /** @var \App\Role $owner */
-                $owner = $guild->roles()->save(Factory(\App\Role::class)->make(['guild_id' => $guild->id, 'name' => "owner", 'position' => 1]));
+                $owner = $guild->roles()->save(Factory(\App\Role::class)->make(['id' => 376709338384957452, 'guild_id' => $guild->id, 'name' => "owner", 'position' => 1]));
                 $this->insertRolePermissions($owner, $rolesMap['owner']);
                 /** @var \App\Role $mod */
-                $mod = $guild->roles()->save(Factory(\App\Role::class)->make(['guild_id' => $guild->id, 'name' => "mod", 'position' => 2]));
+                $mod = $guild->roles()->save(Factory(\App\Role::class)->make(['id' => 376709877650948097, 'guild_id' => $guild->id, 'name' => "mod", 'position' => 2]));
                 $this->insertRolePermissions($mod, $rolesMap['mod']);
                 /** @var \App\Role $user */
-                $user = $guild->roles()->save(Factory(\App\Role::class)->make(['guild_id' => $guild->id, 'name' => "user", 'position' => 3]));
+                $user = $guild->roles()->save(Factory(\App\Role::class)->make(['id' => 376709946861158400, 'guild_id' => $guild->id, 'name' => "user", 'position' => 3]));
+
                 $this->insertRolePermissions($user, $rolesMap['user']);
             } else {
                 $guild->id = 189127132255879168;

@@ -2,17 +2,15 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class User
  * @package App
  */
-class User extends Authenticatable
+class User extends Model
 {
-    use Notifiable;
-
+    public $incrementing = false;
     protected $table = "users";
 
     /**
@@ -21,65 +19,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'id', 'name', 'email',
     ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function characters()
-    {
-        return $this->hasMany(Character::class, 'user_id', "id");
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function defaultCharacter()
-    {
-        return $this->hasOne(Character::class, 'id', "default_character_id");
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function signUps()
-    {
-        return $this->hasMany(SignUp::class, "user_id", "id");
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function afk()
-    {
-        return $this->hasMany(Afk::class, 'user_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function attendedEvents()
-    {
-        return $this->belongsToMany(
-            Event::class,
-            'attendees',
-            'user_id',
-            'event_id',
-            'id',
-            'id',
-            'Attended'
-        )->as("Attended")->withTimestamps();
-    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

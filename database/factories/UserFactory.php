@@ -5,12 +5,10 @@ use Illuminate\Database\Eloquent\Factory;
 
 /** @var Factory $factory */
 $factory->define(App\User::class, function (Faker $faker) {
-    static $password;
-
     return [
+        'id' => random_int(0,PHP_INT_MAX),
         'name' => $faker->firstName(),
-        'family_name' => $faker->lastName,
-        'default_character_id' => null,
+        'avatar' => $faker->md5,
         'email' => $faker->unique()->safeEmail,
     ];
 });

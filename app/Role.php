@@ -51,4 +51,18 @@ class Role extends Model
             'role_permissions'
         );
     }
+
+    /**
+     * @param string $permission
+     */
+    public function hasPermission($hasPermission)
+    {
+        /** @var Permission $permission */
+        foreach ($this->permissions as $permission) {
+            if ($permission->permission === $hasPermission) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

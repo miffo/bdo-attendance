@@ -15,9 +15,9 @@ class Character extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user()
+    public function member()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(Member::class, 'member_id', 'id');
     }
 
     /**

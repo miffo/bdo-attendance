@@ -14,12 +14,13 @@ class CreateMembersTable extends Migration
     public function up()
     {
         Schema::create('members', function (Blueprint $table) {
-            $table->unsignedBigInteger('id');
+            $table->increments('id');
             $table->unsignedBigInteger('guild_id')->index('guild');
-            $table->unsignedInteger('user_id')->index('user');
-            $table->string('avatar', 255);
+            $table->unsignedBigInteger('user_id')->nullable()->default(null)->index('user');
+            $table->string('name')->unique()    ;
+            $table->string("family_name", 255)->unique();
+            $table->unsignedInteger("default_character_id")->nullable()->default(null);
             $table->timestamps();
-            $table->primary(['id', 'guild_id']);
         });
     }
 
