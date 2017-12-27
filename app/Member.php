@@ -95,4 +95,14 @@ class Member extends Model
     {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+
+    public function hasPermission(String $permission): bool
+    {
+        /** @var Role $role */
+        foreach ($this->roles as $role) {
+            if ($role->hasPermission($permission))
+                return true;
+        }
+        return false;
+    }
 }

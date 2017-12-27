@@ -11,10 +11,22 @@
 |
 */
 
-Route::any('/', function () {
-    return View::make('index');
-});
+use Illuminate\Http\Request;
 
+Route::any( '/', function () {
+    /*if (!Auth::check()) {
+        return redirect('/auth');
+    }*/
+    return View::make('app');
+})->middleware('auth');
+
+Route::any('/auth', ['as' => 'login', 'uses' => "AuthController@auth"]);
+Route::any('/callback', "AuthController@callback")->middleware("state_check");
+Route::any('/login', "AuthController@login")->middleware("token_check");
+
+/**
+ * This needs to be last make any request load the single page site.
+ */
 Route::any( '/{any}', function ($any) {
-    return View::make('index');
-})->where('any', '.*');
+    return View::make('app');
+})->where('any', '.*')->middleware('auth');

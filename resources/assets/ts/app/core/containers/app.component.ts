@@ -13,7 +13,8 @@ import { Component } from '@angular/core';
         <app-nav-item routerLink="/users">Users</app-nav-item>
     </app-side-nav>
     <router-outlet></router-outlet>
-</app-layout>`
+</app-layout>`,
+    styles: [``]
 })
 
 export class AppComponent {

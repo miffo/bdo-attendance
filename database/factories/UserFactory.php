@@ -10,5 +10,6 @@ $factory->define(App\User::class, function (Faker $faker) {
         'name' => $faker->firstName(),
         'avatar' => $faker->md5,
         'email' => $faker->unique()->safeEmail,
+        'discriminator' => $faker->numberBetween(1000,5000),
     ];
 });

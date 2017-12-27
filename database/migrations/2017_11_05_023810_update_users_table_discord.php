@@ -15,6 +15,7 @@ class UpdateUsersTableDiscord extends Migration
     {
         Schema::table("users", function (Blueprint $table) {
             $table->unsignedBigInteger('id')->change();
+            $table->string('discriminator', 255)->after("name");
             $table->dropColumn("password");
             $table->dropColumn("remember_token");
             $table->string('avatar', 255)->nullable()->default(null)->after("email");
